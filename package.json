@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-icons": "^4.10.1",
+    "react-transition-group": "^4.4.5"
+  }
+}

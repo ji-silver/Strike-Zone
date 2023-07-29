@@ -1,0 +1,106 @@
+$color-main: #69beb9;
+
+.header {
+    position: fixed;
+    background: white;
+    border: 1px solid #e8e8e8;
+    top: 2rem;
+    width: 100%;
+    max-width: 80vw;
+    margin: 0 auto;
+    border-radius: 50px;
+    height: 70px;
+    padding: 0 25px;
+    z-index: 20;
+    transition: all;
+    transition-duration: 500;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 5px 25px -5px rgb(241, 241, 241);
+
+    .menu {
+        cursor: pointer;
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        margin-left: 15px;
+        display: flex;
+
+        @media (min-width: 960px) {
+            display: none;
+        }
+    }
+
+    .nav {
+        display: none;
+        margin-left: 70px;
+
+        @media (min-width: 960px) {
+            display: flex;
+        }
+
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 42px;
+        }
+
+        .menu {
+            cursor: pointer;
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            margin-left: 15px;
+            display: flex;
+
+            @media (min-width: 960px) {
+                display: none;
+            }
+        }
+
+        li {
+            &:hover {
+                color: #69beb9;
+            }
+
+            a {
+                display: flex;
+                column-gap: 10px;
+            }
+        }
+    }
+
+    .list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn {
+        display: flex;
+        column-gap: 1rem;
+
+        @media (max-width: 960px) {
+            column-gap: 2.25rem;
+        }
+
+        button {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 10px;
+            transition-property: color, background-color, border-color;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+            &:hover {
+                color: white;
+                background: $color-main;
+            }
+            &:nth-of-type(2) {
+                border: 1px solid $color-main;
+            }
+        }
+    }
+}
