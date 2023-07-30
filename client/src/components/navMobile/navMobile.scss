@@ -5,8 +5,8 @@
     height: 100vh;
     position: fixed;
     z-index: 100;
+    top: 0;
     background: #fff;
-    transition: left 0.3s ease;
 
     @media (min-width: 960px) {
         display: none;

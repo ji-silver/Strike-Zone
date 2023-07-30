@@ -5,7 +5,7 @@ import NavMobile from "../navMobile/NavMobile";
 import { BsCalendarCheck, BsPencilSquare } from "react-icons/bs";
 import { PiBaseballCapFill } from "react-icons/pi";
 import { HiOutlineMenu } from "react-icons/hi";
-import { CSSTransition } from "react-transition-group";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -21,21 +21,21 @@ const Nav = () => {
         <div className="nav">
           <ul>
             <li>
-              <a href="#">
+              <NavLink exact to="/" activeClassName="active">
                 <BsCalendarCheck />
                 캘린더
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#">
+              <NavLink to="/write" activeClassName="active">
                 <BsPencilSquare />
                 직관기록
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#">
+              <NavLink to="/odd" activeClassName="active">
                 <PiBaseballCapFill /> 직관 승률
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -49,7 +49,7 @@ const Nav = () => {
           </div>
         </div>
       </header>
-      {toggle && <NavMobile />}{" "}
+      {toggle && <NavMobile handleToggle={handleToggle} />}
     </>
   );
 };

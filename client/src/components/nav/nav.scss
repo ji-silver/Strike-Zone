@@ -1,10 +1,11 @@
-$color-main: #69beb9;
+$color-main: #e02b66;
+$color-light: #fadde6;
 
 .header {
-    position: fixed;
+    position: sticky;
     background: white;
     border: 1px solid #e8e8e8;
-    top: 2rem;
+    top: 1.5rem;
     width: 100%;
     max-width: 80vw;
     margin: 0 auto;
@@ -12,15 +13,18 @@ $color-main: #69beb9;
     height: 70px;
     padding: 0 25px;
     z-index: 20;
-    transition: all;
-    transition-duration: 500;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 5px 25px -5px rgb(241, 241, 241);
 
+    @media (max-width: 960px) {
+        height: 60px;
+    }
+
+    .active {
+        color: $color-main;
+    }
     .menu {
         cursor: pointer;
         font-size: 2.25rem;
@@ -62,7 +66,7 @@ $color-main: #69beb9;
 
         li {
             &:hover {
-                color: #69beb9;
+                color: $color-main;
             }
 
             a {
@@ -82,7 +86,7 @@ $color-main: #69beb9;
         display: flex;
         column-gap: 1rem;
 
-        @media (max-width: 960px) {
+        @media (min-width: 960px) {
             column-gap: 2.25rem;
         }
 
