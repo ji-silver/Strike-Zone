@@ -21,19 +21,34 @@ const Nav = () => {
         <div className="nav">
           <ul>
             <li>
-              <NavLink exact to="/" activeClassName="active">
+              <NavLink
+                to="/"
+                style={({ isActive }) => ({
+                  color: isActive ? "#e02b66" : "inherit",
+                })}
+              >
                 <BsCalendarCheck />
                 캘린더
               </NavLink>
             </li>
             <li>
-              <NavLink to="/write" activeClassName="active">
+              <NavLink
+                to="/write"
+                style={({ isActive }) => ({
+                  color: isActive ? "#e02b66" : "inherit",
+                })}
+              >
                 <BsPencilSquare />
                 직관기록
               </NavLink>
             </li>
             <li>
-              <NavLink to="/odd" activeClassName="active">
+              <NavLink
+                to="/odd"
+                style={({ isActive }) => ({
+                  color: isActive ? "#e02b66" : "inherit",
+                })}
+              >
                 <PiBaseballCapFill /> 직관 승률
               </NavLink>
             </li>

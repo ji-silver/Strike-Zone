@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { format } from "date-fns-tz";
 import { styled } from "styled-components";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
 import Nav from "../../components/nav/Nav";
 import "./calendar.scss";
+import Record from "../../components/recordModal/RecordModal";
+
+const user = [
+  {
+    myTeam: "SSG 랜더스",
+    teamLogoUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
+  },
+];
 
 const events = [
   {
@@ -12,24 +21,53 @@ const events = [
     hScore: [0, 0, 0, 0, 4, 2, 1, 1],
     aSum: [7, 13, 0, 4],
     hSum: [8, 14, 0, 2],
-    date: "2023-07-29",
+    date: "2023-08-01",
     location: "Away",
+    aTeam: "NC 다이노스",
+    hTeam: "SSG 랜더스",
+    win: "맥카티",
+    hold: ["고효준", "문승원"],
+    save: "서진용",
+    mvp: "최정",
+    place: "창원",
+    comment: "고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타",
     homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
     awayImgUrl: `${process.env.PUBLIC_URL}/images/NCD.png`,
   },
   {
-    aScore: [0, 0, 0, 2, 0, 5, 0, 0, 0],
-    hScore: [0, 0, 0, 0, 4, 2, 1, 1],
+    aScore: [0, 0, 0, 2, 0, 5, 0, 0],
+    hScore: [0, 0, 0, 0, 4, 2, 1, 1, 0],
     aSum: [7, 13, 0, 4],
     hSum: [8, 14, 0, 2],
-    date: "2023-07-30",
+    date: "2023-08-02",
     location: "Home",
+    aTeam: "두산 베어스",
+    hTeam: "SSG 랜더스",
+    mvp: "최정",
+    place: "잠실",
     homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
     awayImgUrl: `${process.env.PUBLIC_URL}/images/DUB.png`,
   },
 ];
 
 const Calendar = () => {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null); // 선택한 날짜 정보를 상태로 저장
+
+  const handleEventClick = (info) => {
+    // 이벤트 클릭 시 Record 컴포넌트를 띄우는 로직
+    setSelectedEvent({
+      startStr: info.event.startStr,
+      extendedProps: info.event.extendedProps,
+    });
+    setSelectedDate(null); // 이벤트 클릭 시 선택한 날짜 정보 초기화
+  };
+
+  const handleDayClick = (info) => {
+    // 날짜 클릭 시 선택한 날짜 정보를 상태로 저장
+    setSelectedDate(info.date);
+    setSelectedEvent(null); // 날짜 클릭 시 이벤트 정보 초기화
+  };
   const customContent = (e) => {
     // 달력에서 날짜 '일' 출력 안 하게 빈 문자열로 바꾸기
     const dayNumber = e.dayNumberText.replace("일", "");
@@ -98,7 +136,7 @@ const Calendar = () => {
         <div className="section">
           <FullCalendar
             defaultView="dayGridMonth"
-            plugins={[dayGridPlugin]}
+            plugins={[dayGridPlugin, interactionPlugin]}
             locale={"ko"}
             contentHeight={"auto"}
             // 속성값 전달
@@ -107,8 +145,21 @@ const Calendar = () => {
             eventContent={customEventContent}
             // day top 컨텐츠
             dayCellContent={customContent}
+            eventClick={handleEventClick}
+            dateClick={handleDayClick}
           />
         </div>
+        {/*등록된 이벤트 클릭 시 */}
+        {selectedEvent && (
+          <Record
+            event={selectedEvent}
+            onClose={() => setSelectedEvent(null)}
+          />
+        )}
+        {/*등록안된 이벤트 클릭 시 */}
+        {selectedDate && (
+          <Record event={selectedDate} onClose={() => setSelectedDate(null)} />
+        )}
       </Calcontainer>
     </>
   );

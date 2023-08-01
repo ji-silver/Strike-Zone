@@ -1,0 +1,123 @@
+$color-main: #e02b66;
+$color-light: #fadde6;
+.recordW {
+    display: flex;
+    flex-direction: column;
+    .info {
+        padding-top: 10px;
+        .place {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-left: 10px;
+            background: $color-main;
+            color: white;
+            border-radius: 10px;
+            padding: 3px 7px;
+            display: inline-block;
+        }
+
+        .date {
+            font-size: 1rem;
+            color: gray;
+            display: inline-block;
+        }
+    }
+    .score {
+        padding-top: 20px;
+        display: flex;
+        justify-content: center;
+
+        @media (max-width: 768px) {
+            padding-top: 30px;
+        }
+
+        .scoreTable {
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+
+            @media (max-width: 768px) {
+                font-size: 16px;
+            }
+
+            td {
+                padding: 8px;
+            }
+        }
+    }
+    .boxScore {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 20px;
+    }
+    .lineUp {
+        .lineUpImg {
+            max-width: 400px;
+            height: auto;
+            position: relative;
+
+            img {
+                width: 100%;
+            }
+
+            li {
+                text-align: center;
+                background: #fff;
+                border: 1px solid $color-main;
+                border-radius: 10px;
+                padding: 10px;
+                position: absolute;
+            }
+
+            .p1 {
+                right: 50px;
+                bottom: 50px;
+            }
+
+            .p2 {
+                bottom: 150px;
+                left: 120px;
+            }
+
+            .p3 {
+                bottom: 100px;
+                left: 80px;
+            }
+
+            .p4 {
+                bottom: 200px;
+                left: 50px;
+            }
+
+            .p5 {
+                bottom: 100px;
+                right: 80px;
+            }
+
+            .p6 {
+                bottom: 200px;
+                right: 50px;
+            }
+
+            .p7 {
+                bottom: 230px;
+                right: 165px;
+            }
+
+            .p8 {
+                bottom: 150px;
+                right: 120px;
+            }
+
+            .p9 {
+                bottom: 50px;
+                right: 165px;
+            }
+
+            .p10 {
+                bottom: 100px;
+                right: 165px;
+            }
+        }
+    }
+}

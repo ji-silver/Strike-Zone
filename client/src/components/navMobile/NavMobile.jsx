@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./navMobile.scss";
 import { IoClose } from "react-icons/io5";
-import { styled } from "styled-components";
 
 const NavMobile = ({ handleToggle }) => {
   const [toggle, setToggle] = useState(true);

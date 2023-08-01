@@ -74,6 +74,10 @@ $color-light: #fadde6;
         margin-bottom: 0.5rem;
     }
 
+    .fc-event {
+        cursor: pointer;
+    }
+
     .fc-direction-ltr .fc-daygrid-event.fc-event-end,
     .fc-direction-rtl .fc-daygrid-event.fc-event-start {
         height: 100%;

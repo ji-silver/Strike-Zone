@@ -1,0 +1,36 @@
+.modal {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 850px;
+    height: 600px;
+    z-index: 100;
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (max-width: 960px) {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .closeBtn {
+        right: 12px;
+        top: 12px;
+        cursor: pointer;
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        position: absolute;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 17px;
+    }
+}
