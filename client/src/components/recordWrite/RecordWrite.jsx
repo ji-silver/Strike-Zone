@@ -1,135 +1,233 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./recordWrite.scss";
 import { styled } from "styled-components";
+import { TeamSelect, positions } from "../../../src/datatable";
 
 const RecordWrite = ({ info }) => {
-  const {
-    aTeam,
-    hTeam,
-    aScore,
-    hScore,
-    aSum,
-    hSum,
-    place,
-    location,
-    mvp,
-    comment,
-    win,
-    hold,
-    save,
-  } = info.extendedProps;
+  const [aScore, setAScore] = useState(Array(12).fill(""));
+  const [hScore, setHScore] = useState(Array(12).fill(""));
+  const [aSum, setASum] = useState(Array(4).fill(""));
+  const [hSum, setHSum] = useState(Array(4).fill(""));
+  const [location, setLocation] = useState("Home");
+  const [lineUp, setLineUp] = useState(positions);
 
-  // 띄어쓰기 있으면 팀명 자르기
-  const aTeamName = aTeam.split(" ")[0];
-  const hTeamName = hTeam.split(" ")[0];
-
-  // 스코어보드 9회말 경기 없을 때 테이블 빈값으로 넣기 위해서 함수 정의
-  // 배열 길이 계산해서 나머지는 빈값 넣기
-  const padArray = (arr, length) => {
-    return arr.concat(Array.from({ length: length - arr.length }, () => ""));
+  const handleNameChange = (index, newName) => {
+    const updatedPlayers = [...lineUp];
+    updatedPlayers[index].name = newName;
+    setLineUp(updatedPlayers);
   };
 
-  // 원정팀, 홈팀 나눠서 배열 중 더 긴값을 기준으로 정하고 padArray함수 실행
-  const paddedAScore = padArray(aScore, Math.max(aScore.length, hScore.length));
-  const paddedHScore = padArray(hScore, Math.max(aScore.length, hScore.length));
-
-  const renderTableHeader = () => {
-    return (
-      <thead>
-        <Tr>
-          <th>팀명</th>
-          {/* 원정이면 원정 기준으로 인덱스길이(이닝) 생성 */}
-          {location === "Away"
-            ? aScore.map((score, index) => <th key={index}>{index + 1}</th>)
-            : hScore.map((score, index) => <th key={index}>{index + 1}</th>)}
-          <th>R</th>
-          <th>H</th>
-          <th>E</th>
-          <th>B</th>
-        </Tr>
-      </thead>
-    );
+  const handleCheckLocation = (e) => {
+    setLocation(e.target.value);
   };
 
-  const renderTeamRow = (teamName, scores, sums) => {
-    return (
-      <Tr>
-        <td>{teamName}</td>
-        {scores.map((score, index) => (
-          <td key={index}>{score}</td>
-        ))}
-        {sums.map((score, index) => (
-          <td
-            key={index}
-            style={
-              index === 0
-                ? { borderLeft: "1px solid #e5e5e5", fontWeight: "bold" }
-                : {}
-            }
-          >
-            {score}
-          </td>
-        ))}
-      </Tr>
-    );
+  const handleInputChange = (team, index, value) => {
+    if (team === "Away") {
+      setAScore((prev) => {
+        const newAScore = [...prev];
+        newAScore[index] = value;
+        return newAScore;
+      });
+    } else {
+      setHScore((prev) => {
+        const newHScore = [...prev];
+        newHScore[index] = value;
+        return newHScore;
+      });
+    }
   };
+
+  const handleChangeSum = (team, index, value) => {
+    if (team === "Away") {
+      setASum((prev) => {
+        const newASum = [...prev];
+        newASum[index] = value;
+        return newASum;
+      });
+    } else {
+      setHSum((prev) => {
+        const newHSum = [...prev];
+        newHSum[index] = value;
+        return newHSum;
+      });
+    }
+  };
+
+  const numbers = Array.from({ length: 12 }, (_, index) => index + 1);
 
   return (
     <div className="recordW">
       <div className="title">
-        <p>경기 일정</p>
-        <div className="info">
-          <span className="date">{info.startStr}</span>
-          <span className="place">{place}</span>
+        <p>경기 기록</p>
+      </div>
+      <div className="infoBox">
+        <div className="todayInfo">
+          <div className="info">
+            <div className="info_location">
+              <span>장소</span>
+              <label htmlFor="Home">
+                <input
+                  type="radio"
+                  value="Home"
+                  id="Home"
+                  checked={location === "Home"}
+                  onChange={handleCheckLocation}
+                />
+                <span>Home</span>
+              </label>
+              <label htmlFor="Away">
+                <input
+                  type="radio"
+                  value="Away"
+                  id="Away"
+                  checked={location === "Away"}
+                  onChange={handleCheckLocation}
+                />
+                <span>Away</span>
+              </label>
+            </div>
+            <div className="info_locationName">
+              구장
+              <input type="text" id="place" placeholder="문학" />
+            </div>
+          </div>
+
+          <div className="team">
+            <div>
+              우리 팀 <TeamSelect />
+            </div>
+            <div>
+              상대 팀 <TeamSelect />
+            </div>
+          </div>
+        </div>
+        <div className="Wscore">
+          <table className="scoreTable">
+            <thead>
+              <tr>
+                <th>팀</th>
+                {numbers.map((number) => (
+                  <th key={number}>{number}</th>
+                ))}
+                <th>R</th>
+                <th>H</th>
+                <th>E</th>
+                <th>B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>상대 팀</td>
+                {aScore.map((value, index) => (
+                  <td key={index}>
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={(e) =>
+                        handleInputChange("Away", index, e.target.value)
+                      }
+                    />
+                  </td>
+                ))}
+                {aSum.map((value, index) => (
+                  <td key={index}>
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={(e) =>
+                        handleChangeSum("Away", index, e.target.value)
+                      }
+                    />
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td>우리 팀</td>
+                {hScore.map((value, index) => (
+                  <td key={index}>
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={(e) =>
+                        handleInputChange("Home", index, e.target.value)
+                      }
+                    />
+                  </td>
+                ))}
+                {hSum.map((value, index) => (
+                  <td key={index}>
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={(e) =>
+                        handleChangeSum("Home", index, e.target.value)
+                      }
+                    />
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div className="score">
-        <table className="scoreTable">
-          {renderTableHeader()}
-          <tbody>
-            {location === "Away" ? (
-              <>
-                {renderTeamRow(aTeamName, paddedAScore, aSum)}
-                {renderTeamRow(hTeamName, paddedHScore, hSum)}
-              </>
-            ) : (
-              <>
-                {renderTeamRow(hTeamName, paddedHScore, hSum)}
-                {renderTeamRow(aTeamName, paddedAScore, aSum)}
-              </>
-            )}
-          </tbody>
-        </table>
-      </div>
-      <div className="boxScore">
+      <div className="gameBox">
         <div className="lineUp">
-          <ul className="lineUpImg">
-            <img src={`${process.env.PUBLIC_URL}/images/park.png`} alt="" />
-            <li className="p1">추신수</li>
-            <li className="p2">박성한</li>
-            <li className="p3">최정</li>
-            <li className="p4">에레디아</li>
-            <li className="p5">최주환</li>
-            <li className="p6">하재훈</li>
-            <li className="p7">최지훈</li>
-            <li className="p8">김성현</li>
-            <li className="p9">김민식</li>
-            <li className="p10">맥카티</li>
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>포지션</th>
+                <th>이름</th>
+              </tr>
+            </thead>
+            <tbody>
+              {lineUp.map((player, index) => (
+                <tr key={index}>
+                  <td>{player.position}</td>
+                  <td>
+                    <input
+                      type="text"
+                      value={player.name}
+                      onChange={(e) => handleNameChange(index, e.target.value)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div className="record">
-          <span>승리:{win}</span>
-          <span>홀드:{hold}</span>
-          <span>세이브:{save}</span>
-          <p>오늘의 MVP: {mvp}</p>
-          <p>{comment}</p>
+        <div className="detail">
+          <div className="player">
+            <div className="col">
+              <div>
+                <input type="text" id="win" placeholder=" " />
+                <label htmlFor="win">승리투수</label>
+              </div>
+              <div>
+                <input type="text" placeholder=" " />
+                <label>홀드</label>
+              </div>
+            </div>
+            <div className="col">
+              <div>
+                <input type="text" placeholder=" " />
+                <label>세이브</label>
+              </div>
+              <div>
+                <input type="text" placeholder=" " />
+                <label>MVP</label>
+              </div>
+            </div>
+          </div>
+          <div className="comment">
+            <p>comment</p>
+            <textarea name="" id="" rows="5"></textarea>
+          </div>
         </div>
+      </div>
+      <div className="btn">
+        <button>추가하기</button>
       </div>
     </div>
   );
 };
 export default RecordWrite;
-
-const Tr = styled.tr`
-  border-bottom: 1px solid #e5e5e5;
-`;

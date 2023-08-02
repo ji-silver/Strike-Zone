@@ -1,23 +1,29 @@
+$color-main: #e02b66;
+$color-light: #fadde6;
 .modal {
     position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 850px;
-    height: 600px;
+    height: 650px;
     z-index: 100;
     background-color: white;
     border: 1px solid #e8e8e8;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
     @media (max-width: 960px) {
         width: 100vw;
         height: 100vh;
     }
 
+    .modal_h {
+        position: relative;
+        height: 100%;
+
+        @media (max-width: 768px) {
+            overflow-y: auto;
+        }
+    }
     .closeBtn {
         right: 12px;
         top: 12px;

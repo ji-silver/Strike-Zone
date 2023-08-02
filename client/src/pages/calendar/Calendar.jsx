@@ -8,19 +8,24 @@ import Nav from "../../components/nav/Nav";
 import "./calendar.scss";
 import Record from "../../components/recordModal/RecordModal";
 
-const user = [
-  {
-    myTeam: "SSG 랜더스",
-    teamLogoUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
-  },
-];
-
 const events = [
   {
     aScore: [0, 0, 0, 2, 0, 5, 0, 0, 0],
     hScore: [0, 0, 0, 0, 4, 2, 1, 1],
     aSum: [7, 13, 0, 4],
     hSum: [8, 14, 0, 2],
+    players: [
+      "추신수",
+      "맥카티",
+      "김민식",
+      "최주환",
+      "김성현",
+      "최정",
+      "박성한",
+      "에레디아",
+      "최지훈",
+      "하재훈",
+    ],
     date: "2023-08-01",
     location: "Away",
     aTeam: "NC 다이노스",
@@ -30,7 +35,8 @@ const events = [
     save: "서진용",
     mvp: "최정",
     place: "창원",
-    comment: "고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타",
+    comment:
+      "고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타",
     homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
     awayImgUrl: `${process.env.PUBLIC_URL}/images/NCD.png`,
   },
@@ -39,6 +45,18 @@ const events = [
     hScore: [0, 0, 0, 0, 4, 2, 1, 1, 0],
     aSum: [7, 13, 0, 4],
     hSum: [8, 14, 0, 2],
+    players: [
+      "추신수",
+      "맥카티",
+      "김민식",
+      "최주환",
+      "김성현",
+      "최정",
+      "박성한",
+      "에레디아",
+      "최지훈",
+      "하재훈",
+    ],
     date: "2023-08-02",
     location: "Home",
     aTeam: "두산 베어스",
@@ -52,22 +70,21 @@ const events = [
 
 const Calendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null); // 선택한 날짜 정보를 상태로 저장
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleEventClick = (info) => {
-    // 이벤트 클릭 시 Record 컴포넌트를 띄우는 로직
     setSelectedEvent({
       startStr: info.event.startStr,
       extendedProps: info.event.extendedProps,
     });
-    setSelectedDate(null); // 이벤트 클릭 시 선택한 날짜 정보 초기화
+    setSelectedDate(null);
   };
 
   const handleDayClick = (info) => {
-    // 날짜 클릭 시 선택한 날짜 정보를 상태로 저장
-    setSelectedDate(info.date);
-    setSelectedEvent(null); // 날짜 클릭 시 이벤트 정보 초기화
+    setSelectedDate(info.dateStr);
+    setSelectedEvent(null);
   };
+
   const customContent = (e) => {
     // 달력에서 날짜 '일' 출력 안 하게 빈 문자열로 바꾸기
     const dayNumber = e.dayNumberText.replace("일", "");
@@ -149,16 +166,18 @@ const Calendar = () => {
             dateClick={handleDayClick}
           />
         </div>
-        {/*등록된 이벤트 클릭 시 */}
+        {/*등록안된 이벤트 클릭 시 */}
+        {selectedDate && (
+          <Record
+            newEvent={selectedDate}
+            onClose={() => setSelectedDate(null)}
+          />
+        )}
         {selectedEvent && (
           <Record
             event={selectedEvent}
             onClose={() => setSelectedEvent(null)}
           />
-        )}
-        {/*등록안된 이벤트 클릭 시 */}
-        {selectedDate && (
-          <Record event={selectedDate} onClose={() => setSelectedDate(null)} />
         )}
       </Calcontainer>
     </>

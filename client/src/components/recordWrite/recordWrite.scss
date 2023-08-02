@@ -1,123 +1,224 @@
 $color-main: #e02b66;
 $color-light: #fadde6;
+
 .recordW {
     display: flex;
     flex-direction: column;
-    .info {
-        padding-top: 10px;
-        .place {
-            font-size: 1rem;
-            font-weight: normal;
-            margin-left: 10px;
-            background: $color-main;
-            color: white;
-            border-radius: 10px;
-            padding: 3px 7px;
-            display: inline-block;
+    justify-content: space-between;
+    height: 100%;
+
+    .infoBox {
+        @media (max-width: 960px) {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
         }
 
-        .date {
-            font-size: 1rem;
-            color: gray;
-            display: inline-block;
+        @media (max-width: 768px) {
+            gap: 0;
         }
     }
-    .score {
-        padding-top: 20px;
-        display: flex;
-        justify-content: center;
 
+    .todayInfo {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0 20px 0;
         @media (max-width: 768px) {
             padding-top: 30px;
         }
 
-        .scoreTable {
-            width: 100%;
-            text-align: center;
-            font-size: 18px;
+        .info {
+            display: flex;
+            flex-direction: column;
 
             @media (max-width: 768px) {
-                font-size: 16px;
+                justify-content: center;
             }
+            .info_location {
+                padding-bottom: 10px;
+                label {
+                    cursor: pointer;
+                    padding-left: 5px;
+                    input[type="radio"] {
+                        cursor: pointer;
+                        accent-color: $color-main;
+                    }
+                    span {
+                        padding-left: 5px;
+                    }
+                }
+            }
+            .info_locationName {
+                input {
+                    &:focus {
+                        outline: none;
+                    }
+                    margin-left: 10px;
+                    border: none;
+                    border-bottom: 1px solid #e5e5e5;
+                }
+            }
+        }
+        .team {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
 
-            td {
-                padding: 8px;
+            @media (max-width: 768px) {
+                flex-direction: column;
+            }
+            div {
+                padding-right: 15px;
+
+                @media (max-width: 768px) {
+                    padding: 0 0 10px 0;
+                }
+
+                select {
+                    padding: 5px;
+                }
             }
         }
     }
-    .boxScore {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 20px;
+    .Wscore {
+        @media (max-width: 768px) {
+            overflow-x: auto;
+        }
+        .scoreTable {
+            width: 100%;
+            text-align: center;
+
+            input {
+                border: none;
+                width: 20px;
+                font-size: 16px;
+            }
+
+            tr {
+                border-bottom: 1px solid #e5e5e5;
+                @media (max-width: 768px) {
+                    & > td:first-child {
+                        min-width: 50px;
+                    }
+                }
+                td {
+                    border-right: 1px solid #e5e5e5;
+                    padding: 6px;
+
+                    &:last-child {
+                        border-right: none;
+                    }
+                }
+            }
+        }
     }
-    .lineUp {
-        .lineUpImg {
-            max-width: 400px;
-            height: auto;
-            position: relative;
 
-            img {
-                width: 100%;
+    .gameBox {
+        padding: 40px 0 30px;
+        display: flex;
+        gap: 2rem;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            padding: 20px 0;
+        }
+
+        .lineUp {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            border: 1px dashed $color-main;
+            background-color: #fadde631;
+            border-radius: 10px;
+            padding: 5px;
+            table {
+                thead {
+                    font-weight: bold;
+
+                    th {
+                        padding-right: 10px;
+                    }
+                }
+                input {
+                    background-color: initial;
+                    padding: 5px;
+                    font-size: 16px;
+                    border: none;
+                    border-bottom: 1px solid #e5e5e5;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .detail {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .player {
+                display: flex;
+                flex-direction: column;
+
+                @media (max-width: 768px) {
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                }
+
+                .col {
+                    div {
+                        position: relative;
+                        padding-bottom: 20px;
+                        width: 100%;
+                        input {
+                            width: 95%;
+                            border: none;
+                            outline: none;
+                            background-color: #e5e5e563;
+                            padding: 10px;
+
+                            @media (max-width: 768px) {
+                                width: 80%;
+                                flex: 1;
+                            }
+
+                            &:focus ~ label,
+                            &:not(:placeholder-shown) ~ label {
+                                top: -15px;
+                            }
+                        }
+
+                        label {
+                            position: absolute;
+                            font-size: 14px;
+                            color: gray;
+                            transition: all ease 300ms;
+                            top: 10px;
+                            left: 5px;
+                        }
+                    }
+                }
             }
 
-            li {
-                text-align: center;
-                background: #fff;
-                border: 1px solid $color-main;
-                border-radius: 10px;
-                padding: 10px;
-                position: absolute;
+            .comment {
+                textarea {
+                    width: 99%;
+                    resize: none;
+                    outline: none;
+                    border: 1px solid #e5e5e5;
+                }
             }
-
-            .p1 {
-                right: 50px;
-                bottom: 50px;
-            }
-
-            .p2 {
-                bottom: 150px;
-                left: 120px;
-            }
-
-            .p3 {
-                bottom: 100px;
-                left: 80px;
-            }
-
-            .p4 {
-                bottom: 200px;
-                left: 50px;
-            }
-
-            .p5 {
-                bottom: 100px;
-                right: 80px;
-            }
-
-            .p6 {
-                bottom: 200px;
-                right: 50px;
-            }
-
-            .p7 {
-                bottom: 230px;
-                right: 165px;
-            }
-
-            .p8 {
-                bottom: 150px;
-                right: 120px;
-            }
-
-            .p9 {
-                bottom: 50px;
-                right: 165px;
-            }
-
-            .p10 {
-                bottom: 100px;
-                right: 165px;
-            }
+        }
+    }
+    .btn {
+        text-align: center;
+        padding-bottom: 20px;
+        button {
+            border: 1px solid $color-main;
+            padding: 10px;
+            border-radius: 10px;
         }
     }
 }

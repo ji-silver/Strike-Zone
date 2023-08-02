@@ -1,0 +1,180 @@
+$color-main: #e02b66;
+$color-light: #fadde6;
+.recordI {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .info {
+        padding-top: 10px;
+        .place {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-left: 10px;
+            background: $color-main;
+            color: white;
+            border-radius: 10px;
+            padding: 3px 7px;
+            display: inline-block;
+        }
+
+        .date {
+            font-size: 1rem;
+            color: gray;
+            display: inline-block;
+        }
+    }
+    .score {
+        padding-top: 40px;
+        display: flex;
+        justify-content: center;
+
+        @media (max-width: 768px) {
+            padding-top: 30px;
+        }
+
+        .scoreTable {
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+
+            @media (max-width: 768px) {
+                font-size: 16px;
+            }
+
+            td {
+                padding: 8px;
+            }
+        }
+    }
+    .boxScore {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 960px) {
+            flex-direction: column;
+            padding-top: 30px;
+            justify-content: space-evenly;
+        }
+
+        .lineUp {
+            flex: 1;
+            @media (max-width: 960px) {
+                flex: 0;
+            }
+
+            .lineUpImg {
+                width: 400px;
+                height: auto;
+                position: relative;
+
+                img {
+                    width: 100%;
+                }
+
+                li {
+                    text-align: center;
+                    background: #fff;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 10px;
+                    padding: 10px;
+                    position: absolute;
+                }
+
+                .p0 {
+                    right: 50px;
+                    bottom: 50px;
+                }
+                .p1 {
+                    bottom: 100px;
+                    right: 165px;
+                }
+
+                .p2 {
+                    bottom: 50px;
+                    right: 165px;
+                }
+
+                .p3 {
+                    bottom: 100px;
+                    right: 80px;
+                }
+
+                .p4 {
+                    bottom: 150px;
+                    right: 120px;
+                }
+
+                .p5 {
+                    bottom: 100px;
+                    left: 80px;
+                }
+
+                .p6 {
+                    bottom: 150px;
+                    left: 120px;
+                }
+
+                .p7 {
+                    bottom: 200px;
+                    left: 50px;
+                }
+
+                .p8 {
+                    bottom: 230px;
+                    right: 165px;
+                }
+                .p9 {
+                    bottom: 200px;
+                    right: 50px;
+                }
+            }
+        }
+
+        .record {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            min-height: 250px;
+            text-align: center;
+            line-height: 2rem;
+
+            @media (max-width: 960px) {
+                flex: 0;
+            }
+
+            @media (max-width: 768px) {
+                justify-content: normal;
+            }
+
+            .player {
+                padding-bottom: 20px;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: $color-main;
+                background: $color-light;
+                border-radius: 5px;
+                padding: 3px;
+                margin: 0 5px;
+            }
+
+            .comment {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .btn {
+        text-align: center;
+        padding-bottom: 20px;
+        button {
+            border: 1px solid $color-main;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    }
+}
