@@ -17,7 +17,7 @@ const Nav = () => {
   return (
     <>
       <header className="header container">
-        <a href="#">Strike Zone</a>
+        <a href="/">Strike Zone</a>
         <div className="nav">
           <ul>
             <li>
@@ -56,8 +56,12 @@ const Nav = () => {
         </div>
         <div className="list">
           <div className="btn">
-            <button>로그인</button>
-            <button>회원가입</button>
+            <button>
+              <NavLink to="/login">로그인</NavLink>
+            </button>
+            <button>
+              <NavLink to="/register">회원가입</NavLink>
+            </button>
           </div>
           <div className="menu" onClick={handleToggle}>
             <HiOutlineMenu />

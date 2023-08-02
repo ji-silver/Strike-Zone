@@ -35,8 +35,7 @@ const events = [
     save: "서진용",
     mvp: "최정",
     place: "창원",
-    comment:
-      "고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타",
+    comment: "고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타",
     homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
     awayImgUrl: `${process.env.PUBLIC_URL}/images/NCD.png`,
   },

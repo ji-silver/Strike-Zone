@@ -7,6 +7,36 @@ $color-light: #fadde6;
     @media (max-width: 960px) {
         width: 100%;
     }
+    .fc {
+        padding-bottom: 15px;
+
+        .fc-daygrid-day.fc-day-today {
+            background: $color-light;
+        }
+        .fc-button-primary {
+            background: $color-main;
+            border: none;
+            color: white;
+        }
+
+        .fc-toolbar.fc-header-toolbar {
+            @media (max-width: 768px) {
+                padding: 0 15px;
+            }
+        }
+
+        .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+            height: 7rem;
+        }
+
+        .fc-toolbar.fc-header-toolbar {
+            margin-bottom: 0.5rem;
+        }
+
+        .fc-daygrid-body-natural .fc-daygrid-day-events {
+            margin: 0;
+        }
+    }
 
     .fc-day-sun a {
         color: red;
@@ -18,21 +48,6 @@ $color-light: #fadde6;
             font-size: 18px;
         }
     }
-
-    .fc {
-        padding-bottom: 15px;
-    }
-
-    .fc .fc-button-primary {
-        background: $color-main;
-        border: none;
-        color: white;
-    }
-
-    .fc .fc-daygrid-day.fc-day-today {
-        background-color: $color-light;
-    }
-
     .fc-h-event {
         background-color: transparent;
         border: none;
@@ -41,27 +56,17 @@ $color-light: #fadde6;
         color: #242424;
         font-weight: bold;
     }
-
-    .fc .fc-toolbar.fc-header-toolbar {
-        @media (max-width: 768px) {
-            padding: 0 15px;
-        }
-    }
-
     .fc-daygrid-day-events {
         text-align: center;
+        cursor: pointer;
     }
 
     .fc-daygrid-day-number {
         width: 100%;
+        position: absolute;
         display: flex;
         justify-content: space-between;
     }
-
-    .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
-        height: 5rem;
-    }
-
     .fc-daygrid-event-harness {
         height: 100%;
     }
@@ -69,15 +74,9 @@ $color-light: #fadde6;
     .fc-daygrid-day-top {
         font-weight: bold;
     }
-
-    .fc .fc-toolbar.fc-header-toolbar {
-        margin-bottom: 0.5rem;
-    }
-
     .fc-event {
         cursor: pointer;
     }
-
     .fc-direction-ltr .fc-daygrid-event.fc-event-end,
     .fc-direction-rtl .fc-daygrid-event.fc-event-start {
         height: 100%;
