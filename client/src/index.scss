@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+$color-main: #e02b66;
+$color-light: #fadde6;
 body {
   margin: 0;
   font-family: "NotoSans", sans-serif;
@@ -149,6 +151,19 @@ button {
   padding: 0;
   overflow: visible;
   cursor: pointer;
+}
+
+.errMessage {
+  width: 100%;
+  color: $color-main;
+  font-size: 12px;
+  text-align: left;
+  padding: 3px 0 0 5px;
+}
+
+.errsMessage {
+  color: $color-main;
+  padding-top: 5px;
 }
 
 .container {
