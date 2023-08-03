@@ -36,17 +36,16 @@ export const login = async (req, res, next) => {
     if (!userPassword)
       return createError(400, "이메일 또는 비밀번호가 일치하지 않습니다.");
 
-    const token = jwt.sign(
-      {
-        email: user.email,
-      },
-      process.env.SECRET_KEY,
-      {
-        expiresIn: "1d",
-      }
-    );
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
 
-    res.cookie("token", token, { httpOnly: true }).status(200).json({ token });
+    const { password, ...otherDetails } = user._doc;
+
+    res
+      .cookie("token", token, { httpOnly: true })
+      .status(200)
+      .json({ ...otherDetails });
   } catch (err) {
     next(err);
   }

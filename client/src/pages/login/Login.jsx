@@ -3,6 +3,8 @@ import "./login.scss";
 import FormData from "../../components/formData/FormData";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/userSlice";
 
 const Login = () => {
   const [errors, setErrors] = useState("");
@@ -11,6 +13,7 @@ const Login = () => {
     password: "",
   });
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -33,7 +36,8 @@ const Login = () => {
     }
 
     try {
-      await axios.post("/auth/login", userValue);
+      const res = await axios.post("/auth/login", userValue);
+      dispatch(login(res.data));
       alert("로그인 되었습니다.");
       navigate("/");
     } catch (err) {
