@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { format } from "date-fns-tz";
 import { styled } from "styled-components";
 import FullCalendar from "@fullcalendar/react";
@@ -7,67 +7,79 @@ import interactionPlugin from "@fullcalendar/interaction";
 import Nav from "../../components/nav/Nav";
 import "./calendar.scss";
 import Record from "../../components/recordModal/RecordModal";
+import useFetch from "../../hooks/useFetch";
 
-const events = [
-  {
-    aScore: [0, 0, 0, 2, 0, 5, 0, 0, 0],
-    hScore: [0, 0, 0, 0, 4, 2, 1, 1],
-    aSum: [7, 13, 0, 4],
-    hSum: [8, 14, 0, 2],
-    players: [
-      "추신수",
-      "맥카티",
-      "김민식",
-      "최주환",
-      "김성현",
-      "최정",
-      "박성한",
-      "에레디아",
-      "최지훈",
-      "하재훈",
-    ],
-    date: "2023-08-01",
-    location: "Away",
-    aTeam: "NC 다이노스",
-    hTeam: "SSG 랜더스",
-    win: "맥카티",
-    hold: ["고효준", "문승원"],
-    save: "서진용",
-    mvp: "최정",
-    place: "창원",
-    comment: "고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타",
-    homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
-    awayImgUrl: `${process.env.PUBLIC_URL}/images/NCD.png`,
-  },
-  {
-    aScore: [0, 0, 0, 2, 0, 5, 0, 0],
-    hScore: [0, 0, 0, 0, 4, 2, 1, 1, 0],
-    aSum: [7, 13, 0, 4],
-    hSum: [8, 14, 0, 2],
-    players: [
-      "추신수",
-      "맥카티",
-      "김민식",
-      "최주환",
-      "김성현",
-      "최정",
-      "박성한",
-      "에레디아",
-      "최지훈",
-      "하재훈",
-    ],
-    date: "2023-08-02",
-    location: "Home",
-    aTeam: "두산 베어스",
-    hTeam: "SSG 랜더스",
-    mvp: "최정",
-    place: "잠실",
-    homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
-    awayImgUrl: `${process.env.PUBLIC_URL}/images/DUB.png`,
-  },
-];
+// const events = [
+//   {
+//     aScore: [0, 0, 0, 2, 0, 5, 0, 0, 0],
+//     hScore: [0, 0, 0, 0, 4, 2, 1, 1],
+//     aSum: [7, 13, 0, 4],
+//     hSum: [8, 14, 0, 2],
+//     players: [
+//       "추신수",
+//       "맥카티",
+//       "김민식",
+//       "최주환",
+//       "김성현",
+//       "최정",
+//       "박성한",
+//       "에레디아",
+//       "최지훈",
+//       "하재훈",
+//     ],
+//     date: "2023-08-01",
+//     location: "Away",
+//     aTeam: "NC 다이노스",
+//     hTeam: "SSG 랜더스",
+//     win: "맥카티",
+//     hold: ["고효준", "문승원"],
+//     save: "서진용",
+//     mvp: "최정",
+//     place: "창원",
+//     comment: "고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타",
+//     homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
+//     awayImgUrl: `${process.env.PUBLIC_URL}/images/NCD.png`,
+//   },
+//   {
+//     aScore: [0, 0, 0, 2, 0, 5, 0, 0],
+//     hScore: [0, 0, 0, 0, 4, 2, 1, 1, 0],
+//     aSum: [7, 13, 0, 4],
+//     hSum: [8, 14, 0, 2],
+//     players: [
+//       "추신수",
+//       "맥카티",
+//       "김민식",
+//       "최주환",
+//       "김성현",
+//       "최정",
+//       "박성한",
+//       "에레디아",
+//       "최지훈",
+//       "하재훈",
+//     ],
+//     date: "2023-08-02",
+//     location: "Home",
+//     aTeam: "두산 베어스",
+//     hTeam: "SSG 랜더스",
+//     mvp: "최정",
+//     place: "잠실",
+//     homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
+//     awayImgUrl: `${process.env.PUBLIC_URL}/images/DUB.png`,
+//   },
+// ];
 
 const Calendar = () => {
+  const { data } = useFetch("/record");
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    setEvents(data);
+  }, [data]);
+
+  useEffect(() => {
+    console.log(events);
+  }, [events]);
+
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 

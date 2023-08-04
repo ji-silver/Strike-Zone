@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentUser: null,
+  currentUser: "",
 };
 
 // user 슬라이스로 로그인이면 사용자 정보를 currentUser에 저장, 로그아웃하면 null
@@ -13,7 +13,7 @@ export const userSlice = createSlice({
       state.currentUser = action.payload;
     },
     logout: (state) => {
-      state.currentUser = null;
+      state.currentUser = "";
     },
   },
 });

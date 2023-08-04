@@ -17,7 +17,7 @@ const RecordWrite = ({ info }) => {
     comment,
     win,
     hold,
-    save,
+    saveP,
     players,
   } = info.extendedProps;
 
@@ -128,10 +128,10 @@ const RecordWrite = ({ info }) => {
                 {hold?.join(", ")}
               </>
             )}
-            {save && (
+            {saveP && (
               <>
                 <span className="highlight">세이브</span>
-                {save}
+                {saveP}
               </>
             )}
             {mvp && (
@@ -154,6 +154,7 @@ const RecordWrite = ({ info }) => {
       </div>
       <div className="btn">
         <button>수정하기</button>
+        <button className="delete">삭제하기</button>
       </div>
     </div>
   );

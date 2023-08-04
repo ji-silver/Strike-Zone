@@ -1,6 +1,15 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import userReducer from "./userSlice";
-import { persistReducer } from "redux-persist";
+
 import storage from "redux-persist/lib/storage";
 
 // 'root' key로 로컬스토리지에 저장
@@ -17,4 +26,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // persistReducer 불러올 때 옵션주기
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
