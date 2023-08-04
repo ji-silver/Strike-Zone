@@ -10,7 +10,10 @@ dotenv.config();
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect(process.env.MONGODB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("정상적으로 MongoDB 서버에 연결되었습니다.");
   } catch (error) {
     console.error("MongoDB가 연결되어 있지 않습니다!\n" + error);
