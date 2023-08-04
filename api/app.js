@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRouter from "./routes/auth.js";
+import recordRouter from "./routes/record.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -43,6 +44,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/record", recordRouter);
 
 app.listen(8080, () => {
   connect();

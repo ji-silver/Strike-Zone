@@ -1,5 +1,5 @@
-import jwt, { decode } from "jsonwebtoken";
-import { createError } from "./error";
+import jwt from "jsonwebtoken";
+import { createError } from "./error.js";
 
 // 토큰 검증
 export const verifyToken = (req, res, next) => {
@@ -10,7 +10,7 @@ export const verifyToken = (req, res, next) => {
   }
 
   // 검증 성공 시 decoded된 유저 정보 접근 가능
-  jwt.verify(token, Process.env.SECRET_KEY, (err, decoded) => {
+  jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
     if (err) return next(createError(403, "유효하지 않은 토큰입니다."));
     req.user = decoded;
     next();
