@@ -7,6 +7,7 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/userSlice";
+import axios from "axios";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -17,10 +18,16 @@ const Nav = () => {
     setToggle((prevShowMobileNav) => !prevShowMobileNav);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const isLogout = window.confirm("로그아웃 하시겠습니까?");
     if (isLogout) {
-      dispatch(logout());
+      try {
+        await axios.post("/auth/logout");
+        dispatch(logout());
+        window.location.reload();
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 

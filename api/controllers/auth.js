@@ -50,3 +50,13 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+
+// 로그아웃
+export const logout = async (req, res, next) => {
+  try {
+    res.clearCookie("token");
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+};

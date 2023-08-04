@@ -69,19 +69,13 @@ import useFetch from "../../hooks/useFetch";
 // ];
 
 const Calendar = () => {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
   const { data } = useFetch("/record");
   const [events, setEvents] = useState([]);
-
   useEffect(() => {
     setEvents(data);
   }, [data]);
-
-  useEffect(() => {
-    console.log(events);
-  }, [events]);
-
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleEventClick = (info) => {
     setSelectedEvent({
