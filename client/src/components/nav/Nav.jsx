@@ -21,7 +21,6 @@ const Nav = () => {
     const isLogout = window.confirm("로그아웃 하시겠습니까?");
     if (isLogout) {
       dispatch(logout());
-      alert("로그아웃 되었습니다.");
     }
   };
 

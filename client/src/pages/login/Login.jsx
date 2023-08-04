@@ -38,7 +38,6 @@ const Login = () => {
     try {
       const res = await axios.post("/auth/login", userValue);
       dispatch(login(res.data));
-      alert("로그인 되었습니다.");
       navigate("/");
     } catch (err) {
       setErrors({ password: "이메일 혹은 비밀번호가 일치하지 않습니다." });

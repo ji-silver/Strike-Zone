@@ -3,8 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
 import { Provider } from "react-redux";
-import { persistor, store } from "./redux/store";
+import { store } from "./redux/store";
+import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/lib/integration/react";
+
+const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
