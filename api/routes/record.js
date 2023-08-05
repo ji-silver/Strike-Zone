@@ -12,7 +12,7 @@ const router = express.Router();
 router.post("/", verifyUser, createRecord);
 
 // UPDATE
-router.put("/:id", verifyUser, updateRecord);
+router.patch("/:id", verifyUser, updateRecord);
 
 // DELETE
 router.delete("/:id", verifyUser, deleteRecord);

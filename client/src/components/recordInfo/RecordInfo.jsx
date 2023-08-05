@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./recordInfo.scss";
 import { styled } from "styled-components";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
@@ -6,7 +6,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteRecord } from "../../redux/recordSlice";
 
-const RecordWrite = ({ info, onClose }) => {
+const RecordWrite = ({ info, onCloseModal, onButtonClick }) => {
   const dispatch = useDispatch();
   const {
     _id,
@@ -32,11 +32,16 @@ const RecordWrite = ({ info, onClose }) => {
       try {
         await axios.delete(`/record/${_id}`);
         dispatch(deleteRecord(_id));
-        onClose();
+        onCloseModal();
       } catch (err) {
         console.log(err);
       }
     }
+  };
+
+  const handleButtonClick = () => {
+    onCloseModal();
+    onButtonClick();
   };
 
   // 띄어쓰기 있으면 팀명 자르기
@@ -171,7 +176,6 @@ const RecordWrite = ({ info, onClose }) => {
         </div>
       </div>
       <div className="btn">
-        <button>수정하기</button>
         <button className="delete" onClick={handleDeleteClick}>
           삭제하기
         </button>

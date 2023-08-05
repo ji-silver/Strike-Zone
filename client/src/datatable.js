@@ -1,6 +1,13 @@
-export const TeamSelect = () => {
+export const TeamSelect = ({ onChange }) => {
+  const handleTeamChange = (e) => {
+    onChange(e);
+  };
+
   return (
-    <select name="team" id="team">
+    <select name="team" id="team" onChange={handleTeamChange}>
+      <option value="" disabled selected>
+        팀 선택
+      </option>
       <option value="SSG 랜더스">SSG 랜더스</option>
       <option value="키움 히어로즈">키움 히어로즈</option>
       <option value="LG 트윈스">LG 트윈스</option>
@@ -16,16 +23,16 @@ export const TeamSelect = () => {
 };
 
 export const teamURL = {
-  "SSG 랜더스": `${process.env.PUBLIC_URL}/images/SGL.png`,
-  "키움 히어로즈": `${process.env.PUBLIC_URL}/images/KWH.png`,
-  "LG 트윈스": `${process.env.PUBLIC_URL}/images/LGT.png`,
-  "KT 위즈": `${process.env.PUBLIC_URL}/images/KTW.png`,
-  "KIA 타이거즈": `${process.env.PUBLIC_URL}/images/KAT.png`,
-  "NC 다이노스": `${process.env.PUBLIC_URL}/images/NCD.png`,
-  "삼성 라이온즈": `${process.env.PUBLIC_URL}/images/SSL.png`,
-  "롯데 자이언츠": `${process.env.PUBLIC_URL}/images/LTG.png`,
-  "두산 베어스": `${process.env.PUBLIC_URL}/images/DUB.png`,
-  "한화 이글스": `${process.env.PUBLIC_URL}/images/HHE.png`,
+  "SSG 랜더스": `/images/SGL.png`,
+  "키움 히어로즈": `/images/KWH.png`,
+  "LG 트윈스": `/images/LGT.png`,
+  "KT 위즈": `/images/KTW.png`,
+  "KIA 타이거즈": `images/KAT.png`,
+  "NC 다이노스": `/images/NCD.png`,
+  "삼성 라이온즈": `/images/SSL.png`,
+  "롯데 자이언츠": `/images/LTG.png`,
+  "두산 베어스": `/images/DUB.png`,
+  "한화 이글스": `/images/HHE.png`,
 };
 
 export const positions = [
