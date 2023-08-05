@@ -6,6 +6,13 @@ import RecordInfo from "../recordInfo/RecordInfo";
 import RecordWrite from "../recordWrite/RecordWrite";
 
 const RecordModal = ({ event, onClose, newEvent }) => {
+  const [modalVisible, setModalVisible] = useState(true);
+
+  const handleModalClose = () => {
+    setModalVisible(false);
+    onClose();
+  };
+
   return (
     <Container>
       <div className="modal">
@@ -15,7 +22,7 @@ const RecordModal = ({ event, onClose, newEvent }) => {
           </div>
           {/* event가 존재하는 경우 RecordInfo 컴포넌트 렌더링, 아닌 경우 RecordWrite 컴포넌트 렌더링 */}
           {event ? (
-            <RecordInfo info={event} />
+            <RecordInfo info={event} onClose={handleModalClose} />
           ) : (
             <RecordWrite info={newEvent} />
           )}

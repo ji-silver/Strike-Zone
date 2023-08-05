@@ -2,9 +2,14 @@ import React from "react";
 import "./recordInfo.scss";
 import { styled } from "styled-components";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { deleteRecord } from "../../redux/recordSlice";
 
-const RecordWrite = ({ info }) => {
+const RecordWrite = ({ info, onClose }) => {
+  const dispatch = useDispatch();
   const {
+    _id,
     aTeam,
     hTeam,
     aScore,
@@ -20,6 +25,19 @@ const RecordWrite = ({ info }) => {
     saveP,
     players,
   } = info.extendedProps;
+
+  const handleDeleteClick = async () => {
+    const confirmed = window.confirm("해당 기록을 하시겠습니까?");
+    if (confirmed) {
+      try {
+        await axios.delete(`/record/${_id}`);
+        dispatch(deleteRecord(_id));
+        onClose();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   // 띄어쓰기 있으면 팀명 자르기
   const aTeamName = aTeam.split(" ")[0];
@@ -154,7 +172,9 @@ const RecordWrite = ({ info }) => {
       </div>
       <div className="btn">
         <button>수정하기</button>
-        <button className="delete">삭제하기</button>
+        <button className="delete" onClick={handleDeleteClick}>
+          삭제하기
+        </button>
       </div>
     </div>
   );

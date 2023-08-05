@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "./recordWrite.scss";
-import { styled } from "styled-components";
 import { TeamSelect, positions } from "../../../src/datatable";
 
 const RecordWrite = ({ info }) => {

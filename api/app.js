@@ -25,10 +25,6 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  res.send("api 페이지 접속 성공");
-});
-
 // 에러처리 미들웨어 (err, req, res, next가 반드시 필요!)
 app.use((err, req, res, next) => {
   // 서버 전역에서 에러 발생 시 err객체의 status, message를 추출하고 응답코드 500과 message를 나타내기
@@ -41,6 +37,10 @@ app.use((err, req, res, next) => {
     message: errorMessage,
     stack: err.stack,
   });
+});
+
+app.get("/", async (req, res) => {
+  res.send("api 페이지 접속 성공");
 });
 
 app.use("/api/auth", authRouter);

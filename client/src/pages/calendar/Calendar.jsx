@@ -8,6 +8,8 @@ import Nav from "../../components/nav/Nav";
 import "./calendar.scss";
 import Record from "../../components/recordModal/RecordModal";
 import useFetch from "../../hooks/useFetch";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecord } from "../../redux/recordSlice";
 
 // const events = [
 //   {
@@ -71,11 +73,22 @@ import useFetch from "../../hooks/useFetch";
 const Calendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
-  const { data } = useFetch("/record");
   const [events, setEvents] = useState([]);
+
+  const dispatch = useDispatch();
+  const { records } = useSelector((state) => state.record);
+  const { data } = useFetch("/record");
+
   useEffect(() => {
-    setEvents(data);
-  }, [data]);
+    if (data) {
+      setEvents(data);
+      dispatch(getRecord(data));
+    }
+  }, [data, dispatch]);
+
+  useEffect(() => {
+    setEvents(records);
+  }, [records]);
 
   const handleEventClick = (info) => {
     setSelectedEvent({
