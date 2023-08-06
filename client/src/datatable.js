@@ -4,8 +4,8 @@ export const TeamSelect = ({ onChange }) => {
   };
 
   return (
-    <select name="team" id="team" onChange={handleTeamChange}>
-      <option value="" disabled selected>
+    <select name="team" id="team" onChange={handleTeamChange} defaultValue="">
+      <option value="" disabled>
         팀 선택
       </option>
       <option value="SSG 랜더스">SSG 랜더스</option>

@@ -12,6 +12,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Calendar />} />
+        <Route path="/:date" element={<Calendar />} />
         <Route path="/write" element={<Write />} />
         <Route path="/odd" element={<Odd />} />
         <Route path="/login" element={<Login />} />

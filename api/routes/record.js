@@ -15,7 +15,7 @@ router.post("/", verifyUser, createRecord);
 router.patch("/:id", verifyUser, updateRecord);
 
 // DELETE
-router.delete("/:id", verifyUser, deleteRecord);
+router.delete("/:date", verifyUser, deleteRecord);
 
 // GET
 router.get("/", verifyUser, getRecords);

@@ -11,65 +11,6 @@ import useFetch from "../../hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecord } from "../../redux/recordSlice";
 
-// const events = [
-//   {
-//     aScore: [0, 0, 0, 2, 0, 5, 0, 0, 0],
-//     hScore: [0, 0, 0, 0, 4, 2, 1, 1],
-//     aSum: [7, 13, 0, 4],
-//     hSum: [8, 14, 0, 2],
-//     players: [
-//       "추신수",
-//       "맥카티",
-//       "김민식",
-//       "최주환",
-//       "김성현",
-//       "최정",
-//       "박성한",
-//       "에레디아",
-//       "최지훈",
-//       "하재훈",
-//     ],
-//     date: "2023-08-01",
-//     location: "Away",
-//     aTeam: "NC 다이노스",
-//     hTeam: "SSG 랜더스",
-//     win: "맥카티",
-//     hold: ["고효준", "문승원"],
-//     save: "서진용",
-//     mvp: "최정",
-//     place: "창원",
-//     comment: "고비때마다 터진 '무타자 통산 최다 타점' 최정의 적시타",
-//     homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
-//     awayImgUrl: `${process.env.PUBLIC_URL}/images/NCD.png`,
-//   },
-//   {
-//     aScore: [0, 0, 0, 2, 0, 5, 0, 0],
-//     hScore: [0, 0, 0, 0, 4, 2, 1, 1, 0],
-//     aSum: [7, 13, 0, 4],
-//     hSum: [8, 14, 0, 2],
-//     players: [
-//       "추신수",
-//       "맥카티",
-//       "김민식",
-//       "최주환",
-//       "김성현",
-//       "최정",
-//       "박성한",
-//       "에레디아",
-//       "최지훈",
-//       "하재훈",
-//     ],
-//     date: "2023-08-02",
-//     location: "Home",
-//     aTeam: "두산 베어스",
-//     hTeam: "SSG 랜더스",
-//     mvp: "최정",
-//     place: "잠실",
-//     homeImgUrl: `${process.env.PUBLIC_URL}/images/SGL.png`,
-//     awayImgUrl: `${process.env.PUBLIC_URL}/images/DUB.png`,
-//   },
-// ];
-
 const Calendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -113,12 +54,12 @@ const Calendar = () => {
     // 가져온 날짜 데이터랑 달력 날짜랑 같은 거 매칭 하기
     const matchingEvent = events.find((e) => e.date === formatDate);
 
-    // location이 있으면 앞글자만 저장, 없으면 빈 문자열 저장
+    // // location이 있으면 앞글자만 저장, 없으면 빈 문자열 저장
     const firstLetter = matchingEvent?.location
       ? matchingEvent.location[0]
       : "";
 
-    // firstLetter가 H(Home), A(Away)인지에 따라 색상 다르게
+    // // firstLetter가 H(Home), A(Away)인지에 따라 색상 다르게
     const locationColor = firstLetter === "H" ? "#e02b66" : "#157994";
 
     // location, 일자 반환

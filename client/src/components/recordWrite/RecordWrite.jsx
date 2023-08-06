@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./recordWrite.scss";
 import { TeamSelect, positions, teamURL } from "../../../src/datatable";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addRecord } from "../../redux/recordSlice";
 
-const RecordWrite = ({ info }) => {
+const RecordWrite = ({ info, onCloseModal }) => {
   const [recordData, setRecordData] = useState({
     aSum: Array(4).fill(""),
     hSum: Array(4).fill(""),
     place: "",
     win: "",
-    hold: "",
+    hold: [],
     saveP: "",
     mvp: "",
     comment: "",
@@ -20,6 +22,7 @@ const RecordWrite = ({ info }) => {
   const [lineUp, setLineUp] = useState(positions);
   const [awayScore, setAwayScore] = useState(Array(12).fill(""));
   const [homeScore, setHomeScore] = useState(Array(12).fill(""));
+  const dispatch = useDispatch();
 
   // 배열에 빈칸 없애기
   const aScore = awayScore.filter((value) => value !== null && value !== "");
@@ -48,7 +51,8 @@ const RecordWrite = ({ info }) => {
     setLineUp(updatedPlayers);
   };
 
-  // 점수
+  // 점수판
+  // 원정경기면 Ascore에 입력, 홈경기면 HScore에 입력
   const handleChangeScore = (team, index, value) => {
     if (team === "Away") {
       setAwayScore((prev) => {
@@ -81,7 +85,6 @@ const RecordWrite = ({ info }) => {
   };
 
   const numbers = Array.from({ length: 12 }, (_, index) => index + 1);
-
   const handleClick = async () => {
     const players = lineUp.map((position) => position.name);
     const awayImgUrl = teamURL[recordData.aTeam];
@@ -97,6 +100,11 @@ const RecordWrite = ({ info }) => {
     try {
       await axios.post("/record", RecordDatas);
       alert("추가 되었습니다.");
+      dispatch(addRecord(RecordDatas));
+      onCloseModal();
+
+      setLineUp([]);
+      setRecordData({});
     } catch (err) {
       console.error(err);
     }
@@ -176,8 +184,9 @@ const RecordWrite = ({ info }) => {
                 {awayScore.map((value, index) => (
                   <td key={index}>
                     <input
-                      type="text"
                       value={value}
+                      type="number"
+                      pattern="^[0-9]*"
                       onChange={(e) =>
                         handleChangeScore("Away", index, e.target.value)
                       }
@@ -187,7 +196,8 @@ const RecordWrite = ({ info }) => {
                 {recordData.aSum.map((value, index) => (
                   <td key={index}>
                     <input
-                      type="text"
+                      type="number"
+                      pattern="^[0-9]*"
                       value={value}
                       onChange={(e) =>
                         handleChangeSum("Away", index, e.target.value)
@@ -201,7 +211,8 @@ const RecordWrite = ({ info }) => {
                 {homeScore.map((value, index) => (
                   <td key={index}>
                     <input
-                      type="text"
+                      type="number"
+                      pattern="^[0-9]*"
                       value={value}
                       onChange={(e) =>
                         handleChangeScore("Home", index, e.target.value)
@@ -212,7 +223,8 @@ const RecordWrite = ({ info }) => {
                 {recordData.hSum.map((value, index) => (
                   <td key={index}>
                     <input
-                      type="text"
+                      type="number"
+                      pattern="^[0-9]*"
                       value={value}
                       onChange={(e) =>
                         handleChangeSum("Home", index, e.target.value)

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteRecord } from "../../redux/recordSlice";
 
-const RecordWrite = ({ info, onCloseModal, onButtonClick }) => {
+const RecordWrite = ({ info, onCloseModal }) => {
   const dispatch = useDispatch();
   const {
     _id,
@@ -25,23 +25,21 @@ const RecordWrite = ({ info, onCloseModal, onButtonClick }) => {
     saveP,
     players,
   } = info.extendedProps;
+  // 오늘 날짜
+  const date = info.startStr;
+  console.log(date);
 
   const handleDeleteClick = async () => {
     const confirmed = window.confirm("해당 기록을 하시겠습니까?");
     if (confirmed) {
       try {
-        await axios.delete(`/record/${_id}`);
-        dispatch(deleteRecord(_id));
+        await axios.delete(`/record/${date}`);
+        dispatch(deleteRecord(date));
         onCloseModal();
       } catch (err) {
         console.log(err);
       }
     }
-  };
-
-  const handleButtonClick = () => {
-    onCloseModal();
-    onButtonClick();
   };
 
   // 띄어쓰기 있으면 팀명 자르기
@@ -104,7 +102,7 @@ const RecordWrite = ({ info, onCloseModal, onButtonClick }) => {
       <div className="title">
         <p>경기 기록</p>
         <div className="info">
-          <span className="date">{info.startStr}</span>
+          <span className="date">{date}</span>
           <span className="place">{place}</span>
         </div>
       </div>
@@ -148,7 +146,7 @@ const RecordWrite = ({ info, onCloseModal, onButtonClick }) => {
             {hold && (
               <>
                 <span className="highlight">홀드</span>
-                {hold?.join(", ")}
+                {hold}
               </>
             )}
             {saveP && (

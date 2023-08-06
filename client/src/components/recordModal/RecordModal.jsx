@@ -22,7 +22,7 @@ const RecordModal = ({ event, onClose, newEvent }) => {
           {event ? (
             <RecordInfo info={event} onCloseModal={handleModalClose} />
           ) : (
-            <RecordWrite info={newEvent} />
+            <RecordWrite info={newEvent} onCloseModal={handleModalClose} />
           )}
         </div>
       </div>
