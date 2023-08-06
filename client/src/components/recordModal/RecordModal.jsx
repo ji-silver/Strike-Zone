@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import "./recordModal.scss";
+import Cookies from "js-cookie";
 import { styled } from "styled-components";
 import { IoClose } from "react-icons/io5";
 import RecordInfo from "../recordInfo/RecordInfo";
 import RecordWrite from "../recordWrite/RecordWrite";
+import LoginModal from "../loginModal/LoginModal";
+import { useSelector } from "react-redux";
 
 const RecordModal = ({ event, onClose, newEvent }) => {
-  const [showModal, setShowModal] = useState(false);
+  const user = useSelector((state) => state.user.currentUser);
+
   const handleModalClose = () => {
     onClose();
   };
-
-  return (
+  return user ? (
     <Container>
       <div className="modal">
         <div className="container modal_h">
@@ -27,6 +30,8 @@ const RecordModal = ({ event, onClose, newEvent }) => {
         </div>
       </div>
     </Container>
+  ) : (
+    <LoginModal isOpen={!user} onClose={onClose} />
   );
 };
 

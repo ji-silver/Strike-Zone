@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  myTeam: {
+    type: String,
+    required: true,
+  },
 });
 
 export default mongoose.model("User", UserSchema);

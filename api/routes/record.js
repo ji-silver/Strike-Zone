@@ -5,19 +5,19 @@ import {
   deleteRecord,
   getRecords,
 } from "../controllers/record.js";
-import { verifyUser } from "../utils/verifyToken.js";
+import { verifyToken } from "../utils/verifyToken.js";
 const router = express.Router();
 
 // CREATE
-router.post("/", verifyUser, createRecord);
+router.post("/", verifyToken, createRecord);
 
 // UPDATE
-router.patch("/:id", verifyUser, updateRecord);
+router.patch("/:id", verifyToken, updateRecord);
 
 // DELETE
-router.delete("/:date", verifyUser, deleteRecord);
+router.delete("/:date", verifyToken, deleteRecord);
 
 // GET
-router.get("/", verifyUser, getRecords);
+router.get("/", verifyToken, getRecords);
 
 export default router;

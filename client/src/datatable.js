@@ -4,7 +4,13 @@ export const TeamSelect = ({ onChange }) => {
   };
 
   return (
-    <select name="team" id="team" onChange={handleTeamChange} defaultValue="">
+    <select
+      name="team"
+      id="team"
+      onChange={handleTeamChange}
+      defaultValue=""
+      className="teamSelect"
+    >
       <option value="" disabled>
         팀 선택
       </option>

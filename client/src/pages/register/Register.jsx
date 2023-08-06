@@ -3,6 +3,8 @@ import FormData from "../../components/formData/FormData";
 import { NavLink, useNavigate } from "react-router-dom";
 import { isValidEmail, isValidatePassword } from "../../utils/userValidation";
 import axios from "axios";
+import "./register.scss";
+import { TeamSelect } from "../../datatable";
 
 const Register = () => {
   const [errors, setErrors] = useState("");
@@ -10,9 +12,14 @@ const Register = () => {
     nickname: "",
     email: "",
     password: "",
+    myTeam: "",
   });
 
   const navigate = useNavigate();
+
+  const handlehTeamChange = (e) => {
+    setNewUser((prev) => ({ ...prev, myTeam: e.target.value }));
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +32,10 @@ const Register = () => {
 
     if (!newUser.nickname) {
       validationErrors.nickname = "닉네임을 입력해주세요.";
+    }
+
+    if (!newUser.myTeam) {
+      validationErrors.myTeam = "팀을 선택해주세요.";
     }
 
     if (!newUser.email) {
@@ -56,7 +67,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="registerForm">
       <FormData>
         <div className="login_bottom">
           <div className="formInput">
@@ -84,6 +95,10 @@ const Register = () => {
             />
             {errors.password && (
               <span className="errMessage">{errors.password}</span>
+            )}
+            <TeamSelect onChange={handlehTeamChange} />
+            {errors.myTeam && (
+              <span className="errMessage">{errors.myTeam}</span>
             )}
           </div>
 

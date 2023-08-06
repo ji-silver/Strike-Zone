@@ -86,6 +86,17 @@ const RecordWrite = ({ info, onCloseModal }) => {
 
   const numbers = Array.from({ length: 12 }, (_, index) => index + 1);
   const handleClick = async () => {
+    const playerName = lineUp.some((player) => player.name.trim() === "");
+    if (playerName) {
+      alert("모든 선수의 이름을 입력해주세요.");
+      return;
+    }
+
+    if (!recordData.place) {
+      alert("구장을 입력해주세요");
+      return;
+    }
+
     const players = lineUp.map((position) => position.name);
     const awayImgUrl = teamURL[recordData.aTeam];
     const date = info;

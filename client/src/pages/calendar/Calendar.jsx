@@ -18,7 +18,7 @@ const Calendar = () => {
 
   const dispatch = useDispatch();
   const { records } = useSelector((state) => state.record);
-  const { data } = useFetch("/record");
+  const { data } = useFetch(`/record`);
 
   useEffect(() => {
     if (data) {

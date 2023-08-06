@@ -3,7 +3,7 @@ import "./login.scss";
 import FormData from "../../components/formData/FormData";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/userSlice";
 
 const Login = () => {
