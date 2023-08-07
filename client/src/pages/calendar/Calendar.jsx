@@ -108,7 +108,7 @@ const Calendar = () => {
   return (
     <>
       <Nav />
-      <Calcontainer className="container top">
+      <Calcontainer className="top">
         <div className="section">
           <FullCalendar
             defaultView="dayGridMonth"

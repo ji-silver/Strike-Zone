@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./recordModal.scss";
-import Cookies from "js-cookie";
 import { styled } from "styled-components";
 import { IoClose } from "react-icons/io5";
 import RecordInfo from "../recordInfo/RecordInfo";
@@ -9,11 +8,17 @@ import LoginModal from "../loginModal/LoginModal";
 import { useSelector } from "react-redux";
 
 const RecordModal = ({ event, onClose, newEvent }) => {
+  const [isEditMode, setIsEditMode] = useState(false);
   const user = useSelector((state) => state.user.currentUser);
 
   const handleModalClose = () => {
     onClose();
   };
+
+  const handleEditButtonClick = () => {
+    setIsEditMode(true);
+  };
+
   return user ? (
     <Container>
       <div className="modal">
@@ -22,11 +27,20 @@ const RecordModal = ({ event, onClose, newEvent }) => {
             <IoClose />
           </div>
           {/* event가 존재하는 경우 RecordInfo 컴포넌트 렌더링, 아닌 경우 RecordWrite 컴포넌트 렌더링 */}
-          {event ? (
-            <RecordInfo info={event} onCloseModal={handleModalClose} />
-          ) : (
-            <RecordWrite info={newEvent} onCloseModal={handleModalClose} />
-          )}
+          <>
+            {event && !isEditMode ? (
+              <>
+                <RecordInfo info={event} onCloseModal={handleModalClose} />
+                <button onClick={handleEditButtonClick}>수정하기</button>
+              </>
+            ) : (
+              <RecordWrite
+                info={newEvent}
+                editInfo={event}
+                onCloseModal={handleModalClose}
+              />
+            )}
+          </>
         </div>
       </div>
     </Container>

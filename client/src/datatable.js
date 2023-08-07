@@ -1,4 +1,4 @@
-export const TeamSelect = ({ onChange }) => {
+export const TeamSelect = ({ onChange, defaultTeam }) => {
   const handleTeamChange = (e) => {
     onChange(e);
   };
@@ -8,12 +8,9 @@ export const TeamSelect = ({ onChange }) => {
       name="team"
       id="team"
       onChange={handleTeamChange}
-      defaultValue=""
       className="teamSelect"
+      defaultValue={defaultTeam}
     >
-      <option value="" disabled>
-        팀 선택
-      </option>
       <option value="SSG 랜더스">SSG 랜더스</option>
       <option value="키움 히어로즈">키움 히어로즈</option>
       <option value="LG 트윈스">LG 트윈스</option>

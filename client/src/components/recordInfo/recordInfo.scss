@@ -3,6 +3,7 @@ $color-light: #fadde6;
 .recordI {
     display: flex;
     flex-direction: column;
+    overflow-x: auto;
     height: 100%;
     .info {
         padding-top: 10px;

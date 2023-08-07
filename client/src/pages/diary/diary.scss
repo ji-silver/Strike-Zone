@@ -1,0 +1,93 @@
+$color-main: #e02b66;
+$color-light: #fadde6;
+.diary {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 4rem 5vw;
+        padding: 0;
+
+        .card {
+            position: relative;
+            display: block;
+            height: 350px;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 1px solid #f1f1f1;
+            box-shadow: 0 5px 25px -5px #f1f1f1;
+            box-sizing: border-box;
+
+            &:hover .cardOverlay {
+                transform: translateY(0);
+            }
+
+            &:hover .cardHeader {
+                transform: translateY(0);
+            }
+
+            .cardImage {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .cardOverlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 1;
+                background-color: white;
+                transform: translateY(100%);
+                transition: 0.2s ease-in-out;
+
+                .cardHeader {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    padding: 2em;
+                    border-radius: 40px 0 0 0;
+                    transform: translateY(-100%);
+                    transition: 0.2s ease-in-out;
+                    background-color: #fff;
+
+                    .cardArc {
+                        width: 80px;
+                        height: 80px;
+                        position: absolute;
+                        bottom: 100%;
+                        right: 0;
+                        z-index: 1;
+
+                        path {
+                            fill: white;
+                            d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+                        }
+                    }
+
+                    .cardTitle {
+                        font-size: 1em;
+                        font-weight: bold;
+                        margin: 0 0 0.3em;
+                    }
+
+                    .cardStatus {
+                        font-size: 0.8em;
+                        color: $color-main;
+                    }
+                }
+
+                .cardDescription {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    padding-left: 2em;
+                    top: 2em;
+                    margin: 0;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}

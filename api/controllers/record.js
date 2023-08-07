@@ -3,16 +3,24 @@ import { createError } from "../utils/error.js";
 
 // 캘린더에 이벤트 추가 (userId 추가하기)
 export const createRecord = async (req, res, next) => {
-  const existingRecord = await Record.findOne({ date: req.body.date });
-  // 같은 날짜에 중복된 이벤트가 이미 등록된 경우
-  if (existingRecord) {
-    return res.status(400).json("이미 등록된 이벤트입니다.");
-  }
   try {
+    // 현재 로그인된 사용자와 같은 날짜에 등록된 이벤트가 있는지 확인
+    const existingRecord = await Record.findOne({
+      userId: req.user.id,
+      date: req.body.date,
+    });
+
+    // 현재 로그인된 사용자와 같은 날짜에 이미 등록된 이벤트가 있는 경우
+    if (existingRecord) {
+      return res.status(400).json("이미 등록된 이벤트입니다.");
+    }
+
+    // 같은 날짜에 등록된 이벤트가 없는 경우, 새로운 이벤트 등록
     const savedRecord = await Record.create({
       userId: req.user.id,
       ...req.body,
     });
+
     res.status(200).json(savedRecord);
   } catch (err) {
     next(err);

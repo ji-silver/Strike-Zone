@@ -27,8 +27,6 @@ const RecordWrite = ({ info, onCloseModal }) => {
   } = info.extendedProps;
   // 오늘 날짜
   const date = info.startStr;
-  console.log(date);
-
   const handleDeleteClick = async () => {
     const confirmed = window.confirm("해당 기록을 하시겠습니까?");
     if (confirmed) {

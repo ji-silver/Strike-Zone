@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./recordWrite.scss";
 import { TeamSelect, positions, teamURL } from "../../../src/datatable";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addRecord } from "../../redux/recordSlice";
 
-const RecordWrite = ({ info, onCloseModal }) => {
+const RecordWrite = ({ info, onCloseModal, editInfo }) => {
+  const { myTeam } = useSelector((state) => state.user.currentUser);
   const [recordData, setRecordData] = useState({
     aSum: Array(4).fill(""),
     hSum: Array(4).fill(""),
@@ -17,12 +18,57 @@ const RecordWrite = ({ info, onCloseModal }) => {
     comment: "",
     location: "Home",
     aTeam: "",
-    hTeam: "",
+    hTeam: myTeam,
   });
   const [lineUp, setLineUp] = useState(positions);
   const [awayScore, setAwayScore] = useState(Array(12).fill(""));
   const [homeScore, setHomeScore] = useState(Array(12).fill(""));
   const dispatch = useDispatch();
+
+  // const fillWithEmpty = (array, length) => {
+  //   return Array.from({ length }, (_, index) =>
+  //     array[index] !== undefined ? array[index] : ""
+  //   );
+  // };
+
+  // useEffect(() => {
+  //   if (editInfo) {
+  //     setAwayScore(
+  //       fillWithEmpty(
+  //         editInfo.extendedProps?.aScore?.map((value) =>
+  //           !isNaN(value) ? Number(value) : ""
+  //         ),
+  //         12
+  //       )
+  //     );
+  //     setHomeScore(
+  //       fillWithEmpty(
+  //         editInfo.extendedProps?.hScore?.map((value) =>
+  //           !isNaN(value) ? Number(value) : ""
+  //         ),
+  //         12
+  //       )
+  //     );
+  //     setRecordData((prevRecordData) => ({
+  //       ...prevRecordData,
+  //       aSum: editInfo.extendedProps?.aSum || "",
+  //       hSum: editInfo.extendedProps?.hSum || "",
+  //       hTeam: editInfo.extendedProps?.hTeam || "",
+  //       aTeam: editInfo.extendedProps?.aTeam || "",
+  //       location: editInfo.extendedProps?.location || "Home",
+  //       place: editInfo.extendedProps?.place || "",
+  //       win: editInfo.extendedProps?.win || "",
+  //       hold: editInfo.extendedProps?.hold || [],
+  //       saveP: editInfo.extendedProps?.saveP || "",
+  //       mvp: editInfo.extendedProps?.mvp || "",
+  //       comment: editInfo.extendedProps?.comment || "",
+  //     }));
+  //   }
+  // }, [editInfo]);
+
+  // useEffect(() => {
+  //   console.log(recordData, awayScore);
+  // }, [recordData, awayScore]);
 
   // 배열에 빈칸 없애기
   const aScore = awayScore.filter((value) => value !== null && value !== "");
@@ -83,9 +129,9 @@ const RecordWrite = ({ info, onCloseModal }) => {
       }
     });
   };
-
   const numbers = Array.from({ length: 12 }, (_, index) => index + 1);
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     const playerName = lineUp.some((player) => player.name.trim() === "");
     if (playerName) {
       alert("모든 선수의 이름을 입력해주세요.");
@@ -97,9 +143,9 @@ const RecordWrite = ({ info, onCloseModal }) => {
       return;
     }
 
-    const players = lineUp.map((position) => position.name);
     const awayImgUrl = teamURL[recordData.aTeam];
     const date = info;
+    const players = lineUp.map((position) => position.name);
     const RecordDatas = {
       ...recordData,
       players,
@@ -111,11 +157,12 @@ const RecordWrite = ({ info, onCloseModal }) => {
     try {
       await axios.post("/record", RecordDatas);
       alert("추가 되었습니다.");
-      dispatch(addRecord(RecordDatas));
-      onCloseModal();
+      const clearedPlayers = lineUp.map((player) => ({ ...player, name: "" }));
+      setLineUp(clearedPlayers);
 
-      setLineUp([]);
       setRecordData({});
+      onCloseModal();
+      dispatch(addRecord(RecordDatas));
     } catch (err) {
       console.error(err);
     }
@@ -168,7 +215,8 @@ const RecordWrite = ({ info, onCloseModal }) => {
           {/* 스코어 박스 */}
           <div className="team">
             <div>
-              우리 팀 <TeamSelect onChange={handlehTeamChange} />
+              우리 팀{" "}
+              <TeamSelect onChange={handlehTeamChange} defaultTeam={myTeam} />
             </div>
             <div>
               상대 팀 <TeamSelect onChange={handleaTeamChange} />

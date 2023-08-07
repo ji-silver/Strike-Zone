@@ -173,7 +173,10 @@ button {
 }
 
 .container {
-  padding: 0 15px;
+  padding: 0 50px;
+  @media (max-width: 960px) {
+    padding: 0px;
+  }
 
   @media (max-width: 640px) {
     .container {

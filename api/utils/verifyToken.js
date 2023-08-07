@@ -15,15 +15,3 @@ export const verifyToken = (req, res, next) => {
     next();
   });
 };
-
-// 회원 인증
-// export const verifyUser = (req, res, next) => {
-//   // 위에 작성한 토큰 검증 실행. 사용자 id랑 매개변수 id랑 같은지 확인
-//   verifyToken(req, res, next, () => {
-//     if (req.user.id === req.params.id) {
-//       next();
-//     } else {
-//       return next(createError(403, "접근 권한이 없습니다."));
-//     }
-//   });
-// };

@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/userSlice";
 import axios from "axios";
+import { styled } from "styled-components";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -32,7 +33,7 @@ const Nav = () => {
   };
 
   return (
-    <>
+    <NavContainer>
       <header className="header container">
         <a href="/">Strike Zone</a>
         <div className="nav">
@@ -50,7 +51,7 @@ const Nav = () => {
             </li>
             <li>
               <NavLink
-                to="/write"
+                to="/diary"
                 style={({ isActive }) => ({
                   color: isActive ? "#e02b66" : "inherit",
                 })}
@@ -92,8 +93,16 @@ const Nav = () => {
         </div>
       </header>
       {toggle && <NavMobile handleToggle={handleToggle} />}
-    </>
+    </NavContainer>
   );
 };
 
 export default Nav;
+
+const NavContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 70px;
+`;

@@ -11,7 +11,7 @@ const FormData = ({ children }) => {
     : "회원가입 후 이용해주세요.";
 
   return (
-    <div className="container loginC">
+    <div className="loginC">
       <div className="section">
         <div className="leftContainer">
           <div className="loginWrap">
