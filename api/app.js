@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRouter from "./routes/auth.js";
 import recordRouter from "./routes/record.js";
+import diaryRouter from "./routes/diary.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -45,6 +46,7 @@ app.get("/", async (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/record", recordRouter);
+app.use("/api/diary", diaryRouter);
 
 app.listen(8080, () => {
   connect();

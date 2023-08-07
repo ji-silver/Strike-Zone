@@ -5,7 +5,8 @@ import Calendar from "./pages/calendar/Calendar";
 import Odd from "./pages/odd/Odd";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import Diary from "./pages/diary/Diary";
+import DiaryList from "./pages/diaryList/DiaryList";
+import DiaryContent from "./pages/diaryContent/DiaryContent";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Calendar />} />
         <Route path="/:date" element={<Calendar />} />
-        <Route path="/diary" element={<Diary />} />
+        <Route path="/diary" element={<DiaryList />} />
+        <Route path="/diary/:id" element={<DiaryContent />} />
         <Route path="/odd" element={<Odd />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

@@ -1,6 +1,14 @@
 import React from "react";
-import "./diary.scss";
+import "./diaryList.scss";
 import Nav from "../../components/nav/Nav";
+
+const data = {
+  date: "2023-08-08",
+  createdAt: "",
+  myTeam: "SSG 랜더스",
+  opposingTeam: "롯데 자이언츠",
+  imgUrl: ["/images/stadium1.jpg"],
+};
 
 const Diary = () => {
   return (
