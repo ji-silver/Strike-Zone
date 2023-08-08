@@ -22,6 +22,7 @@ $color-light: #fadde6;
 
         @media (max-width: 768px) {
             overflow-y: auto;
+            padding: 0;
         }
     }
     .closeBtn {

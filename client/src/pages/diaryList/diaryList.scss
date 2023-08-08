@@ -1,12 +1,17 @@
 $color-main: #e02b66;
 $color-light: #fadde6;
 .diary {
+    box-sizing: border-box;
     .cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
         gap: 2rem;
         margin: 4rem 5vw;
         padding: 0;
+
+        @media (max-width: 960px) {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
 
         .card {
             position: relative;
@@ -16,7 +21,6 @@ $color-light: #fadde6;
             overflow: hidden;
             border: 1px solid #f1f1f1;
             box-shadow: 0 5px 25px -5px #f1f1f1;
-            box-sizing: border-box;
 
             &:hover .cardOverlay {
                 transform: translateY(0);
@@ -80,9 +84,10 @@ $color-light: #fadde6;
 
                 .cardDescription {
                     position: absolute;
+                    font-size: 1.25rem;
                     left: 0;
                     right: 0;
-                    padding-left: 2em;
+                    padding-left: 1.5em;
                     top: 2em;
                     margin: 0;
                     overflow: hidden;

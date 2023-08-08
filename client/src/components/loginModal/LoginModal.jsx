@@ -11,8 +11,10 @@ const LoginModal = ({ isOpen, onClose }) => {
   return (
     <Container>
       <div className="loginModal">
-        <p>로그인이 필요한 서비스입니다.</p>
-        <p>로그인 하시겠습니까?</p>
+        <div>
+          <p>로그인이 필요한 서비스입니다.</p>
+          <p>로그인 하시겠습니까?</p>
+        </div>
         <div className="btn">
           <NavLink to="/login">
             <button>확인</button>

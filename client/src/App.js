@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import DiaryList from "./pages/diaryList/DiaryList";
 import DiaryContent from "./pages/diaryContent/DiaryContent";
+import DiaryForm from "./pages/diaryForm/DiaryForm";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/:date" element={<Calendar />} />
         <Route path="/diary" element={<DiaryList />} />
         <Route path="/diary/:id" element={<DiaryContent />} />
+        <Route path="/diary/new" element={<DiaryForm />} />
+        <Route path="/diary/edit/:id" element={<DiaryForm />} />
         <Route path="/odd" element={<Odd />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

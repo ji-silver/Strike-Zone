@@ -26,6 +26,10 @@ const DiarySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    result: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true }
 );

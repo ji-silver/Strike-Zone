@@ -1,0 +1,132 @@
+$color-main: #e02b66;
+$color-light: #fadde6;
+.dContainer {
+    height: 100vh;
+    .diary {
+        height: 100%;
+        padding-top: 60px;
+        .closeBtn {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            cursor: pointer;
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+        }
+
+        .content {
+            .title {
+                text-align: center;
+                font-weight: bold;
+                padding-bottom: 30px;
+                .date {
+                    padding-bottom: 10px;
+                }
+                h1 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 24px;
+
+                    .result {
+                        font-size: initial;
+                        font-weight: initial;
+                        margin-left: 10px;
+                        background: $color-main;
+                        color: white;
+                        padding: 5px;
+                    }
+                }
+            }
+
+            .desc {
+                margin: 0 auto;
+                width: 100%;
+
+                .images {
+                    cursor: pointer;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 0.5em;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 100%;
+                        height: 400px;
+                        display: block;
+                        margin: 0 auto;
+                        object-fit: cover;
+                    }
+                }
+
+                .text {
+                    padding: 30px 0;
+                    padding-bottom: 60px;
+                    font-size: 18px;
+                    white-space: pre-wrap;
+                }
+            }
+        }
+    }
+}
+
+.diaryModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .modal-content {
+        padding: 20px;
+        max-width: 100%;
+        text-align: center;
+        position: relative;
+
+        img {
+            cursor: pointer;
+            max-height: 90vh;
+            width: auto;
+            margin: 0 auto;
+        }
+    }
+}
+
+.floatingMenu {
+    position: fixed;
+    bottom: 75px;
+    right: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 25px -5px #f1f1f1;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        margin: 5px 0;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+
+        .btnIcon {
+            margin-right: 5px;
+        }
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+    }
+}
