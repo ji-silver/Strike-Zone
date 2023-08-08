@@ -2,6 +2,7 @@ import React from "react";
 import "./diaryList.scss";
 import Nav from "../../components/nav/Nav";
 import { NavLink } from "react-router-dom";
+import FloatingBtn from "../../components/floatingBtn/FloatingBtn";
 
 const data = {
   _id: "1",
@@ -35,20 +36,20 @@ const Diary = () => {
                 <img src={data.imgUrl[0]} alt="" className="cardImage" />
                 <div className="cardOverlay">
                   <div className="cardHeader">
-                    <svg class="cardArc" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="cardArc" xmlns="http://www.w3.org/2000/svg">
                       <path />
                     </svg>
                     <div>
-                      <h3 class="cardTitle">
+                      <h3 className="cardTitle">
                         {data.date} ({dayOfWeekInKorean})
                       </h3>
 
-                      <span class="cardStatus">
+                      <span className="cardStatus">
                         작성일: {year}-{month}-{day}
                       </span>
                     </div>
                   </div>
-                  <p class="cardDescription">
+                  <p className="cardDescription">
                     {data.myTeam} VS {data.opposingTeam}
                   </p>
                 </div>
@@ -57,6 +58,9 @@ const Diary = () => {
           </ul>
         </div>
       </div>
+      <NavLink to="/diary/new">
+        <FloatingBtn />
+      </NavLink>
     </>
   );
 };

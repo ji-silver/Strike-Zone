@@ -84,15 +84,19 @@ const DiaryContent = () => {
       <FloatingBtn>
         <div className="floatingMenu">
           <NavLink to="/diary/edit/:id">
-            <button>
-              <BiEdit className="btnIcon" />
+            <span>
               수정
-            </button>
+              <div>
+                <BiEdit className="btnIcon" />
+              </div>
+            </span>
           </NavLink>
-          <button onClick={handleDeleteClick}>
-            <RiDeleteBinLine className="btnIcon" />
+          <span onClick={handleDeleteClick}>
             삭제
-          </button>
+            <div>
+              <RiDeleteBinLine className="btnIcon" />
+            </div>
+          </span>
         </div>
       </FloatingBtn>
     </>

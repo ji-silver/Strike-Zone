@@ -17,6 +17,11 @@ $color-light: #fadde6;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 
+    .text {
+        text-align: center;
+        line-height: 1.5em;
+    }
+
     button {
         margin: 10px 5px 0;
         background-color: #dddddd;

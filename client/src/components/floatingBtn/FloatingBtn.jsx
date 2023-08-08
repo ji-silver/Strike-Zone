@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./floatingBtn.scss";
-import { CiMenuKebab } from "react-icons/ci";
 import { HiPlus } from "react-icons/hi";
 
 const FloatingBtn = ({ children }) => {
@@ -12,12 +11,13 @@ const FloatingBtn = ({ children }) => {
 
   return (
     <>
-      {isMenuOpen && children}
+      {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
       <div className="floatingBtn" onClick={toggleMenu}>
         <div>
           <HiPlus className="icon" />
         </div>
       </div>
+      {isMenuOpen && children}
     </>
   );
 };
