@@ -1,0 +1,17 @@
+$color-main: #e02b66;
+.errorWrap {
+    width: 100vw;
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .icon {
+        font-size: 50px;
+        color: $color-main;
+    }
+    p {
+        font-size: 18px;
+        line-height: 1.5em;
+    }
+}

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/userSlice";
 import axios from "axios";
 import { styled } from "styled-components";
+import { deleteDiary } from "../../redux/diarySlice";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);

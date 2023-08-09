@@ -5,25 +5,29 @@ import { IoClose } from "react-icons/io5";
 import FloatingBtn from "../../components/floatingBtn/FloatingBtn";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
-
-const data = {
-  _id: "1",
-  date: "2023-08-08",
-  createdAt: "2023-08-07T07:41:22.233+00:00",
-  myTeam: "SSG 랜더스",
-  opposingTeam: "롯데 자이언츠",
-  imgUrl: ["/images/stadium1.jpg", "/images/stadium1.jpg"],
-  result: "true",
-  desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, facilis ducimus saepe voluptas numquam ad aspernatur assumenda quod? Ipsum dicta aperiam porro dolorem cum quis voluptatem tenetur eveniet eaque saepe?",
-};
+import useFetch from "../../hooks/useFetch";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import Loading from "../../components/loading/Loading";
 
 const DiaryContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { data, loading } = useFetch(`/diary/${id}`);
+  const { imgUrl, date, myTeam, opposingTeam, desc, result } = data;
 
   const handleDeleteClick = async () => {
     const confirmed = window.confirm("정말 삭제하시겠습니까?");
     if (confirmed) {
+      try {
+        await axios.delete(`/diary/${id}`);
+        alert("삭제되었습니다.");
+        navigate("/diary");
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -36,10 +40,14 @@ const DiaryContent = () => {
     setIsModalOpen(false);
     setSelectedImage("");
   };
-  const navigate = useNavigate();
+
   const handleClick = () => {
     navigate(-1);
   };
+
+  if (!data || !data.imgUrl || !Array.isArray(data.imgUrl) || loading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -50,26 +58,26 @@ const DiaryContent = () => {
           </div>
           <div className="content">
             <div className="title">
-              <p className="date">{data.date}</p>
+              <p className="date">{date}</p>
               <h1>
-                {data.myTeam} VS {data.opposingTeam}
-                <span className="result">
-                  {data.result === "true" ? "승리" : ""}
+                {myTeam} VS {opposingTeam}
+                <span className={result === true ? "result" : ""}>
+                  {result === true ? "승리" : ""}
                 </span>
               </h1>
             </div>
             <div className="desc">
               <div className="images">
-                {data.imgUrl.map((imageUrl, index) => (
+                {imgUrl.map((url, index) => (
                   <img
                     key={index}
-                    src={imageUrl}
+                    src={url}
                     alt=""
-                    onClick={() => openModal(imageUrl)}
+                    onClick={() => openModal(url)}
                   />
                 ))}
               </div>
-              <div className="text">{data.desc}</div>
+              <div className="text">{desc}</div>
             </div>
           </div>
         </div>
@@ -83,7 +91,7 @@ const DiaryContent = () => {
       )}
       <FloatingBtn>
         <div className="floatingMenu">
-          <NavLink to="/diary/edit/:id">
+          <NavLink to={`/diary/edit/${id}`}>
             <span>
               수정
               <div>

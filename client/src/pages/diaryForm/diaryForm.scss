@@ -8,15 +8,40 @@ $color-gray: #e8e8e8;
     gap: 3em;
     margin: 4rem 5vw;
 
+    @media (max-width: 960px) {
+        flex-direction: column;
+    }
+
+    @media (max-width: 768px) {
+        margin: 0;
+        margin-bottom: 30px;
+    }
+
     .selected {
         padding: 20px;
         border-radius: 20px;
         border: 1px solid #c7c7c7;
         max-height: 300px;
+        @media (max-width: 960px) {
+            display: flex;
+            justify-content: space-between;
+        }
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
 
         .toggle {
             display: flex;
             flex-direction: column;
+
+            @media (max-width: 768px) {
+                flex-direction: row;
+            }
+            p {
+                @media (max-width: 768px) {
+                    flex: 1;
+                }
+            }
         }
         .toggleBtn {
             box-sizing: border-box;
@@ -100,16 +125,27 @@ $color-gray: #e8e8e8;
         border-radius: 5px;
         border: 1px solid #8a8a8a;
         background: #f0f0f0;
+        @media (max-width: 768px) {
+            flex: 1;
+            padding: 10px 18px;
+        }
     }
     .teamSelect {
         cursor: pointer;
         padding: 10px 18px;
         border-radius: 5px;
+        @media (max-width: 768px) {
+            flex: 1;
+        }
     }
 
     .calendarWrap {
         position: absolute;
         z-index: 5;
+        @media (max-width: 768px) {
+            top: 0;
+            width: 90%;
+        }
     }
 
     .content {
@@ -120,6 +156,11 @@ $color-gray: #e8e8e8;
             border: none;
             padding: 10px;
             border-radius: 10px;
+
+            @media (max-width: 960px) {
+                width: 100%;
+                margin-top: 15px;
+            }
         }
         flex: 1;
         h1 {
@@ -133,6 +174,7 @@ $color-gray: #e8e8e8;
         }
         .imgWrap {
             display: flex;
+
             label {
                 .imageBtn {
                     display: flex;
@@ -146,6 +188,16 @@ $color-gray: #e8e8e8;
                     border-radius: 10px;
                     cursor: pointer;
 
+                    @media (max-width: 960px) {
+                        width: 100px;
+                        height: 100px;
+                    }
+
+                    @media (max-width: 768px) {
+                        width: 50px;
+                        height: 50px;
+                    }
+
                     &:hover {
                         background: #8a8a8a;
                         transition: 0.1s ease all;
@@ -157,11 +209,23 @@ $color-gray: #e8e8e8;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                @media (max-width: 960px) {
+                }
                 .thumbnail-item {
                     position: relative;
                     width: 200px;
                     height: 200px;
                     margin-right: 10px;
+                    @media (max-width: 960px) {
+                        width: 100px;
+                        height: 100px;
+                    }
+                    @media (max-width: 768px) {
+                        width: 50px;
+                        height: 50px;
+                    }
                     img {
                         width: 100%;
                         height: 100%;

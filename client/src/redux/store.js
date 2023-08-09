@@ -10,6 +10,7 @@ import {
 } from "redux-persist";
 import userReducer from "./userSlice";
 import recordSlice from "./recordSlice";
+import diarySlice from "./diarySlice";
 
 import storage from "redux-persist/lib/storage";
 
@@ -19,7 +20,11 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({ user: userReducer, record: recordSlice });
+const rootReducer = combineReducers({
+  user: userReducer,
+  record: recordSlice,
+  diary: diarySlice,
+});
 
 //persistConfig, rootReducer 합치면 store 생성할 때 persistedReducer에 저장
 const persistedReducer = persistReducer(persistConfig, rootReducer);

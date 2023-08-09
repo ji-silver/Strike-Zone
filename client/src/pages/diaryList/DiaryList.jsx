@@ -3,61 +3,83 @@ import "./diaryList.scss";
 import Nav from "../../components/nav/Nav";
 import { NavLink } from "react-router-dom";
 import FloatingBtn from "../../components/floatingBtn/FloatingBtn";
-
-const data = {
-  _id: "1",
-  date: "2023-08-08",
-  createdAt: "2023-08-07T07:41:22.233+00:00",
-  myTeam: "SSG 랜더스",
-  opposingTeam: "롯데 자이언츠",
-  imgUrl: ["/images/stadium1.jpg"],
-};
+import useFetch from "../../hooks/useFetch";
+import Error from "../../components/error/Error";
 
 const Diary = () => {
-  const dateObj = new Date(data.date);
-  const dayOfWeek = dateObj.getDay();
-  const days = ["일", "월", "화", "수", "목", "금", "토"];
-  const dayOfWeekInKorean = days[dayOfWeek];
+  const { data } = useFetch(`/diary`);
 
-  const dateObject = new Date(data.createdAt);
+  // 작성일, 시간 출력
+  const formatDate = (dateTime) => {
+    const dateObj = new Date(dateTime);
+    const formattedDate = dateObj.toLocaleDateString("ko-KR");
+    const formattedTime = dateObj.toLocaleTimeString("ko-KR", {
+      timeStyle: "short",
+    });
 
-  const year = dateObject.getFullYear();
-  const month = String(dateObject.getMonth() + 1).padStart(2, "0");
-  const day = String(dateObject.getDate()).padStart(2, "0");
+    return `${formattedDate} ${formattedTime}`;
+  };
+
+  // date 기준으로 요일 출력하기
+  const getDayOfWeek = (date) => {
+    const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+    return daysOfWeek[date.getDay()];
+  };
 
   return (
     <>
       <Nav />
-      <div className="container top">
-        <div className="diary">
-          <ul className="cards">
-            <li>
-              <NavLink to={`/diary/${data._id}`} className="card">
-                <img src={data.imgUrl[0]} alt="" className="cardImage" />
-                <div className="cardOverlay">
-                  <div className="cardHeader">
-                    <svg className="cardArc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <div>
-                      <h3 className="cardTitle">
-                        {data.date} ({dayOfWeekInKorean})
-                      </h3>
-
-                      <span className="cardStatus">
-                        작성일: {year}-{month}-{day}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="cardDescription">
-                    {data.myTeam} VS {data.opposingTeam}
-                  </p>
-                </div>
-              </NavLink>
-            </li>
-          </ul>
+      {data.length === 0 ? (
+        <Error />
+      ) : (
+        <div className="container top">
+          <div className="diary">
+            <ul className="cards">
+              {/* reverse()를 사용하여 배열을 역순으로 만들기 */}
+              {data
+                .slice()
+                .reverse()
+                .map((item) => {
+                  const dateObj = new Date(item.date);
+                  const dayOfWeek = getDayOfWeek(dateObj);
+                  const formattedDateTime = formatDate(item.updatedAt);
+                  return (
+                    <li key={item._id}>
+                      <NavLink to={`/diary/${item._id}`} className="card">
+                        <img
+                          src={item.imgUrl[0]}
+                          alt=""
+                          className="cardImage"
+                        />
+                        <div className="cardOverlay">
+                          <div className="cardHeader">
+                            <svg
+                              className="cardArc"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path />
+                            </svg>
+                            <div>
+                              <h3 className="cardTitle">
+                                관람일 | {item.date} ({dayOfWeek})
+                              </h3>
+                              <span className="cardStatus">
+                                {formattedDateTime}
+                              </span>
+                            </div>
+                          </div>
+                          <p className="cardDescription">
+                            {item.myTeam} VS {item.opposingTeam}
+                          </p>
+                        </div>
+                      </NavLink>
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
       <NavLink to="/diary/new">
         <FloatingBtn />
       </NavLink>

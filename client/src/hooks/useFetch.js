@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const useFetch = (url) => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -11,17 +12,19 @@ const useFetch = (url) => {
       return;
     }
     const fetchData = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(url);
         setData(res.data);
       } catch (err) {
         console.error(err);
       }
+      setLoading(false);
     };
     fetchData();
   }, [url]);
 
-  return { data };
+  return { data, loading };
 };
 
 export default useFetch;

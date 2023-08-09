@@ -10,6 +10,7 @@ import Record from "../../components/recordModal/RecordModal";
 import useFetch from "../../hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecord } from "../../redux/recordSlice";
+import { getDiary } from "../../redux/diarySlice";
 
 const Calendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -17,8 +18,15 @@ const Calendar = () => {
   const [events, setEvents] = useState([]);
 
   const dispatch = useDispatch();
-  const { records } = useSelector((state) => state.record);
+  // 레코드 데이터
   const { data } = useFetch(`/record`);
+  // 다이어리 데이터
+  const diaryData = useFetch(`/diary`);
+  dispatch(getDiary(diaryData.data));
+
+  const { records } = useSelector((state) => state.record);
+  const diaries = useSelector((state) => state.diary.diaries);
+  const dates = diaries.length > 0 ? diaries.map((diary) => diary.date) : [];
 
   useEffect(() => {
     if (data) {
@@ -62,11 +70,14 @@ const Calendar = () => {
     // // firstLetter가 H(Home), A(Away)인지에 따라 색상 다르게
     const locationColor = firstLetter === "H" ? "#e02b66" : "#157994";
 
+    const hasSpecialDate = dates.includes(formatDate);
+    const addClass = hasSpecialDate ? "day" : "";
+
     // location, 일자 반환
     return (
       <>
         <Location color={locationColor}>{firstLetter}</Location>
-        <span>{dayNumber}</span>
+        <span className={addClass}>{dayNumber}</span>
       </>
     );
   };
@@ -105,6 +116,7 @@ const Calendar = () => {
       </>
     );
   };
+
   return (
     <>
       <Nav />

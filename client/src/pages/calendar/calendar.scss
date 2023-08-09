@@ -42,6 +42,14 @@ $color-light: #fadde6;
         color: red;
     }
 
+    .fc-day-mon {
+        background: rgb(249, 249, 249);
+    }
+
+    .fc-col-header-cell.fc-day.fc-day-mon {
+        background: #fff;
+    }
+
     .fc-toolbar-title {
         font-weight: bold;
         @media (max-width: 768px) {
@@ -65,7 +73,20 @@ $color-light: #fadde6;
         width: 100%;
         position: absolute;
         display: flex;
+        align-items: center;
         justify-content: space-between;
+
+        .day {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background: #fddad2;
+            border-radius: 100px;
+            padding: 2px;
+            font-weight: 500;
+        }
     }
     .fc-daygrid-event-harness {
         height: 100%;

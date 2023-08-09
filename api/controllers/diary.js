@@ -29,7 +29,7 @@ export const updateDiary = async (req, res, next) => {
   try {
     const diary = await Diary.findById(req.params.id);
     if (!diary) return next(createError(400, "수정할 기록이 없습니다."));
-    if (req.user.if === diary.userId) {
+    if (req.user.id === diary.userId) {
       const updatedDiary = await Diary.findByIdAndUpdate(
         req.params.id,
         { $set: req.body },
@@ -37,7 +37,9 @@ export const updateDiary = async (req, res, next) => {
       );
       res.status(200).json(updatedDiary);
     }
-  } catch (err) {}
+  } catch (err) {
+    next(err);
+  }
 };
 
 // 직관 기록 삭제
