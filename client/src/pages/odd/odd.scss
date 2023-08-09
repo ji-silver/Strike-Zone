@@ -1,0 +1,89 @@
+$color-main: #e02b66;
+$color-light: #fadde6;
+.oddBg {
+    position: fixed; /* 배경 이미지를 화면에 고정 */
+    width: 100%;
+    height: 100%; /* 화면의 전체 높이로 설정 */
+    z-index: -1;
+    top: 0;
+
+    div {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-image: url(../../../public/images/paper.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+
+.oddWrap {
+    margin: 5rem 10vw;
+
+    @media (max-width: 768px) {
+        margin: 0;
+    }
+
+    .desc {
+        text-align: center;
+        font-size: 1.5em;
+        line-height: 1.5em;
+
+        @media (max-width: 768px) {
+            font-size: inherit;
+        }
+
+        span {
+            color: $color-main;
+            font-weight: bold;
+        }
+    }
+    .detail {
+        padding-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2em;
+
+        .stamp {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .oddIcon {
+                width: 150px;
+                img {
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                    width: 80px;
+                }
+            }
+            span {
+                font-weight: bold;
+            }
+            .result {
+                color: $color-main;
+            }
+        }
+    }
+}
+
+.diaryBtn {
+    border: 1px solid #e02b66;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: 0.1s ease all;
+
+    span {
+        color: #e02b66;
+    }
+
+    &:hover {
+        background: #e02b66;
+        span {
+            color: white;
+        }
+    }
+}

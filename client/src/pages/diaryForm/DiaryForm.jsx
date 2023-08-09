@@ -28,7 +28,6 @@ const DiaryForm = () => {
     myTeam: myTeam,
     opposingTeam: "",
     desc: "",
-    imgUrl: [""],
   });
 
   // useEffect(() => {
@@ -147,7 +146,7 @@ const DiaryForm = () => {
 
     let formDatas = { ...formData };
 
-    if (files) {
+    if (files && files.length > 0) {
       const uploadedUrls = await handleImageUpload(files);
       if (uploadedUrls) {
         formDatas.imgUrl = uploadedUrls;

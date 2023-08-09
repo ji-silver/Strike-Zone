@@ -5,9 +5,10 @@ import { NavLink } from "react-router-dom";
 import FloatingBtn from "../../components/floatingBtn/FloatingBtn";
 import useFetch from "../../hooks/useFetch";
 import Error from "../../components/error/Error";
+import Loading from "../../components/loading/Loading";
 
 const Diary = () => {
-  const { data } = useFetch(`/diary`);
+  const { data, loading } = useFetch(`/diary`);
 
   // 작성일, 시간 출력
   const formatDate = (dateTime) => {
@@ -30,7 +31,10 @@ const Diary = () => {
     <>
       <Nav />
       {data.length === 0 ? (
-        <Error />
+        <Error>
+          <p>등록된 기록이 없습니다.</p>
+          <p>오늘 직관한 걸 기록해보세요!</p>
+        </Error>
       ) : (
         <div className="container top">
           <div className="diary">
