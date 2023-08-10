@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./recordWrite.scss";
 import { TeamSelect, positions, teamURL } from "../../../src/datatable";
 import axios from "axios";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./navMobile.scss";
 import { IoClose } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
@@ -6,10 +6,8 @@ import { BsCalendarCheck, BsPencilSquare } from "react-icons/bs";
 import { PiBaseballCapFill } from "react-icons/pi";
 
 const NavMobile = ({ handleToggle }) => {
-  const [toggle, setToggle] = useState(true);
-
   return (
-    <nav className="mNav" toggle={toggle}>
+    <nav className="mNav">
       <div className="menu" onClick={handleToggle}>
         <IoClose />
       </div>

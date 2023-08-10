@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { TeamSelect } from "../../datatable";
 import { useSelector } from "react-redux";
@@ -29,6 +29,8 @@ const DiaryForm = () => {
     opposingTeam: "",
     desc: "",
   });
+
+  console.log(data);
 
   // useEffect(() => {
   //   if (data) {

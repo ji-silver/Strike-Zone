@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FormData from "../../components/formData/FormData";
 import { NavLink, useNavigate } from "react-router-dom";
 import { isValidEmail, isValidatePassword } from "../../utils/userValidation";

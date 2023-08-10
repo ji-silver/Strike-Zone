@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./recordInfo.scss";
 import { styled } from "styled-components";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
@@ -9,7 +9,6 @@ import { deleteRecord } from "../../redux/recordSlice";
 const RecordWrite = ({ info, onCloseModal }) => {
   const dispatch = useDispatch();
   const {
-    _id,
     aTeam,
     hTeam,
     aScore,
