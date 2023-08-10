@@ -8,7 +8,8 @@ import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 
 const Diary = () => {
-  const { data, loading } = useFetch(`/diary`);
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
+  const { data, loading } = useFetch(`${PROXY}/api/diary`);
 
   // 작성일, 시간 출력
   const formatDate = (dateTime) => {

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addRecord } from "../../redux/recordSlice";
 
 const RecordWrite = ({ info, onCloseModal, editInfo }) => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const { myTeam } = useSelector((state) => state.user.currentUser);
   const [recordData, setRecordData] = useState({
     aSum: Array(4).fill(""),
@@ -155,7 +156,7 @@ const RecordWrite = ({ info, onCloseModal, editInfo }) => {
       hScore,
     };
     try {
-      await axios.post("/record", RecordDatas);
+      await axios.post(`${PROXY}/api/record`, RecordDatas);
       alert("추가 되었습니다.");
       const clearedPlayers = lineUp.map((player) => ({ ...player, name: "" }));
       setLineUp(clearedPlayers);

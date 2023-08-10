@@ -13,6 +13,7 @@ import { getRecord } from "../../redux/recordSlice";
 import { getDiary } from "../../redux/diarySlice";
 
 const Calendar = () => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [events, setEvents] = useState([]);
@@ -21,7 +22,7 @@ const Calendar = () => {
   // 레코드 데이터
   const { data } = useFetch(`/record`);
   // 다이어리 데이터
-  const diaryData = useFetch(`http://43.202.115.19/api/diary`);
+  const diaryData = useFetch(`${PROXY}/api/diary`);
   dispatch(getDiary(diaryData.data));
 
   const { records } = useSelector((state) => state.record);

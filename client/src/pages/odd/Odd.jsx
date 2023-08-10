@@ -8,7 +8,8 @@ import { useSelector } from "react-redux";
 import Loading from "../../components/loading/Loading";
 
 const Odd = () => {
-  const { data, loading } = useFetch(`/diary`);
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
+  const { data, loading } = useFetch(`${PROXY}/api/diary`);
   const { nickname } = useSelector((state) => state.user.currentUser);
 
   const currentYear = new Date().getFullYear();

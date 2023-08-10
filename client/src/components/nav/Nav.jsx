@@ -11,6 +11,7 @@ import axios from "axios";
 import { styled } from "styled-components";
 
 const Nav = () => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const [toggle, setToggle] = useState(false);
 
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Nav = () => {
     const isLogout = window.confirm("로그아웃 하시겠습니까?");
     if (isLogout) {
       try {
-        await axios.post("/auth/logout");
+        await axios.post(`${PROXY}/api/auth/logout`);
         dispatch(logout());
         window.location.reload();
       } catch (err) {

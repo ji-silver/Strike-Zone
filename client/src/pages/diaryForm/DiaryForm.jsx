@@ -15,6 +15,7 @@ import Loading from "../../components/loading/Loading";
 import LoginModal from "../../components/loginModal/LoginModal";
 
 const DiaryForm = () => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const { id } = useParams();
   const { data } = useFetch(`/diary/${id}`);
   const [loading, setLoading] = useState(false);
@@ -156,7 +157,7 @@ const DiaryForm = () => {
     }
 
     try {
-      await axios.post("/diary", formDatas);
+      await axios.post(`${PROXY}/api/diary`, formDatas);
       alert("등록되었습니다.");
       navigate("/diary");
     } catch (err) {

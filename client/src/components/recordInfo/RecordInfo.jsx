@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { deleteRecord } from "../../redux/recordSlice";
 
 const RecordWrite = ({ info, onCloseModal }) => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const dispatch = useDispatch();
   const {
     aTeam,
@@ -30,7 +31,7 @@ const RecordWrite = ({ info, onCloseModal }) => {
     const confirmed = window.confirm("해당 기록을 하시겠습니까?");
     if (confirmed) {
       try {
-        await axios.delete(`/record/${date}`);
+        await axios.delete(`${PROXY}/api/record/${date}`);
         dispatch(deleteRecord(date));
         onCloseModal();
       } catch (err) {

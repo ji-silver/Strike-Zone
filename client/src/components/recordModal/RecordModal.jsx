@@ -31,7 +31,7 @@ const RecordModal = ({ event, onClose, newEvent }) => {
             {event && !isEditMode ? (
               <>
                 <RecordInfo info={event} onCloseModal={handleModalClose} />
-                <button onClick={handleEditButtonClick}>수정하기</button>
+                <button onClick={handleEditButtonClick}></button>
               </>
             ) : (
               <RecordWrite
