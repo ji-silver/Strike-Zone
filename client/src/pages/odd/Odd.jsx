@@ -5,6 +5,7 @@ import useFetch from "../../hooks/useFetch";
 import Error from "../../components/error/Error";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Loading from "../../components/loading/Loading";
 
 const Odd = () => {
   const { data, loading } = useFetch(`/diary`);
@@ -30,7 +31,9 @@ const Odd = () => {
   return (
     <>
       <Nav />
-      {data.length === 0 ? (
+      {loading ? (
+        <Loading />
+      ) : data.length === 0 ? (
         <Error>
           <p>직관 기록을 작성해야 확인할 수 있어요!</p>
           <p>직관 기록을 작성해보세요</p>

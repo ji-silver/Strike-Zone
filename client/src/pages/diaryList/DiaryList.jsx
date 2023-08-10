@@ -30,7 +30,9 @@ const Diary = () => {
   return (
     <>
       <Nav />
-      {data.length === 0 ? (
+      {loading ? (
+        <Loading />
+      ) : data.length === 0 ? (
         <Error>
           <p>등록된 기록이 없습니다.</p>
           <p>오늘 직관한 걸 기록해보세요!</p>
