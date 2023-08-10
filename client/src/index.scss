@@ -3,7 +3,7 @@ $color-main: #e02b66;
 $color-light: #fadde6;
 body {
   margin: 0;
-  font-family: "NotoSans", sans-serif;
+  font-family: "NotoSans", sans-serif !important;
   color: #424242;
 }
 
@@ -143,7 +143,7 @@ table {
 }
 
 a {
-  color: inherit;
+  color: #424242;
   text-decoration: none;
   outline: none;
 }

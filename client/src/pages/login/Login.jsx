@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/userSlice";
 
 const Login = () => {
+  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const [errors, setErrors] = useState("");
   const [userValue, setUserValue] = useState({
     email: "",
@@ -36,7 +37,7 @@ const Login = () => {
     }
 
     try {
-      const res = await axios.post("/auth/login", userValue);
+      const res = await axios.post(`${PROXY}/auth/login`, userValue);
       dispatch(login(res.data));
       navigate("/");
     } catch (err) {
