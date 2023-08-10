@@ -16,7 +16,7 @@ const DiaryContent = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
-  const { data, loading } = useFetch(`/diary/${id}`);
+  const { data, loading } = useFetch(`${PROXY}/api/diary/${id}`);
   const { imgUrl, date, myTeam, opposingTeam, desc, result } = data;
 
   const handleDeleteClick = async () => {

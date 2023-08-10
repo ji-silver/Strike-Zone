@@ -20,7 +20,7 @@ const Calendar = () => {
 
   const dispatch = useDispatch();
   // 레코드 데이터
-  const { data } = useFetch(`/record`);
+  const { data } = useFetch(`${PROXY}/api/record`);
   // 다이어리 데이터
   const diaryData = useFetch(`${PROXY}/api/diary`);
   dispatch(getDiary(diaryData.data));

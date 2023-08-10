@@ -45,7 +45,7 @@ const Nav = () => {
               <NavLink
                 to="/"
                 style={({ isActive }) => ({
-                  color: isActive ? "#e02b66" : "inherit",
+                  color: isActive ? "#e02b66" : "#424242",
                 })}
               >
                 <BsCalendarCheck />
@@ -56,7 +56,7 @@ const Nav = () => {
               <NavLink
                 to="/diary"
                 style={({ isActive }) => ({
-                  color: isActive ? "#e02b66" : "inherit",
+                  color: isActive ? "#e02b66" : "#424242",
                 })}
               >
                 <BsPencilSquare />
@@ -67,7 +67,7 @@ const Nav = () => {
               <NavLink
                 to="/odd"
                 style={({ isActive }) => ({
-                  color: isActive ? "#e02b66" : "inherit",
+                  color: isActive ? "#e02b66" : "#424242",
                 })}
               >
                 <PiBaseballCapFill /> 직관 승률
