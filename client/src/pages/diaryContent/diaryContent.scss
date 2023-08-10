@@ -66,6 +66,10 @@ $color-light: #fadde6;
                         display: block;
                         margin: 0 auto;
                         object-fit: cover;
+
+                        @media (max-width: 768px) {
+                            height: 300px;
+                        }
                     }
                 }
 
@@ -86,7 +90,7 @@ $color-light: #fadde6;
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100vw;

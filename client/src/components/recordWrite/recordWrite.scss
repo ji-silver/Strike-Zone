@@ -204,6 +204,7 @@ $color-light: #fadde6;
 
             .comment {
                 textarea {
+                    white-space: pre-wrap;
                     width: 99%;
                     resize: none;
                     outline: none;

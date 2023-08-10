@@ -36,6 +36,11 @@
             margin-left: 1rem;
             margin-right: 1rem;
             font-weight: bold;
+
+            a {
+                display: flex;
+                gap: 0.5em;
+            }
         }
     }
 }

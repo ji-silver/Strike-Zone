@@ -36,7 +36,9 @@ const Nav = () => {
   return (
     <NavContainer>
       <header className="header container">
-        <a href="/">Strike Zone</a>
+        <a href="/">
+          <img src="/images/logo.png" alt="" className="logo" />
+        </a>
         <div className="nav">
           <ul>
             <li>

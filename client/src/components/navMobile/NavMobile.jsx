@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./navMobile.scss";
 import { IoClose } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
+import { BsCalendarCheck, BsPencilSquare } from "react-icons/bs";
+import { PiBaseballCapFill } from "react-icons/pi";
 
 const NavMobile = ({ handleToggle }) => {
   const [toggle, setToggle] = useState(true);
@@ -12,13 +15,37 @@ const NavMobile = ({ handleToggle }) => {
       </div>
       <ul>
         <li>
-          <a href="#">캘린더</a>
+          <NavLink
+            to="/"
+            style={({ isActive }) => ({
+              color: isActive ? "#e02b66" : "inherit",
+            })}
+          >
+            <BsCalendarCheck />
+            캘린더
+          </NavLink>
         </li>
         <li>
-          <a href="#">직관 기록</a>
+          <NavLink
+            to="/diary"
+            style={({ isActive }) => ({
+              color: isActive ? "#e02b66" : "inherit",
+            })}
+          >
+            <BsPencilSquare />
+            직관 기록
+          </NavLink>
         </li>
         <li>
-          <a href="#">직관 승률</a>
+          <NavLink
+            to="/odd"
+            style={({ isActive }) => ({
+              color: isActive ? "#e02b66" : "inherit",
+            })}
+          >
+            <PiBaseballCapFill />
+            직관 승률
+          </NavLink>
         </li>
       </ul>
     </nav>

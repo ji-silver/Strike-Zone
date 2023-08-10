@@ -72,10 +72,11 @@ $color-light-gray: #e5e5e5;
 
             .login_top {
                 .Logo {
-                    color: $color-main;
-                    font-size: 50px;
-                    font-weight: bold;
                     padding-bottom: 10px;
+                    img {
+                        width: 70%;
+                        height: auto;
+                    }
 
                     @media (max-width: 768px) {
                         font-size: 40px;

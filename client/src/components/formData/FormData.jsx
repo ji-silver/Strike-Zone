@@ -17,7 +17,9 @@ const FormData = ({ children }) => {
           <div className="loginWrap">
             <div className="login_top">
               <NavLink to="/">
-                <p className="Logo">Strike Zone!</p>
+                <p className="Logo">
+                  <img src="/images/logo.png" alt="" />
+                </p>
               </NavLink>
               <p>{message}</p>
               <div className="google">
