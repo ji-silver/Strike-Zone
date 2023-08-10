@@ -21,7 +21,7 @@ const Calendar = () => {
   // 레코드 데이터
   const { data } = useFetch(`/record`);
   // 다이어리 데이터
-  const diaryData = useFetch(`/diary`);
+  const diaryData = useFetch(`http://43.202.115.19/api/diary`);
   dispatch(getDiary(diaryData.data));
 
   const { records } = useSelector((state) => state.record);
