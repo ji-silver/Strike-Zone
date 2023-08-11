@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./nav.scss";
 import NavMobile from "../navMobile/NavMobile";
 import { BsCalendarCheck, BsPencilSquare } from "react-icons/bs";
@@ -13,12 +13,29 @@ import { styled } from "styled-components";
 const Nav = ({ modalOpen }) => {
   const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const [toggle, setToggle] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
 
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const handleToggle = () => {
     setToggle((prevShowMobileNav) => !prevShowMobileNav);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY <= 50) {
+        setIsAtTop(true);
+      } else {
+        setIsAtTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleClick = async () => {
     const isLogout = window.confirm("로그아웃 하시겠습니까?");
@@ -34,8 +51,8 @@ const Nav = ({ modalOpen }) => {
   };
 
   return (
-    <NavContainer modalOpen={modalOpen}>
-      <header className="header container">
+    <NavContainer modalOpen={modalOpen} isAtTop={isAtTop}>
+      <Header className="header container" isAtTop={isAtTop}>
         <a href="/">
           <img src="/images/logo.png" alt="" className="logo" />
         </a>
@@ -94,7 +111,7 @@ const Nav = ({ modalOpen }) => {
             <HiOutlineMenu />
           </div>
         </div>
-      </header>
+      </Header>
       {toggle && <NavMobile handleToggle={handleToggle} />}
     </NavContainer>
   );
@@ -103,11 +120,23 @@ const Nav = ({ modalOpen }) => {
 export default Nav;
 
 const NavContainer = styled.div`
+  position: fixed;
   display: flex;
   justify-content: center;
-  position: relative;
+  align-items: center;
   width: 100%;
-  height: 70px;
-
+  height: 80px;
+  top: ${(props) => (props.isAtTop ? "20px" : "0")};
   z-index: ${(props) => (props.modalOpen ? "0" : "20")};
+
+  @media (max-width: 960px) {
+    height: 60px;
+  }
+`;
+
+const Header = styled.header`
+  width: ${(props) => (props.isAtTop ? "80%" : "100%")};
+  border-radius: ${(props) => (props.isAtTop ? "50px" : "0")};
+  border: ${(props) => (props.isAtTop ? "1px solid #e8e8e8;" : "none")};
+  transition: all 0.3s;
 `;

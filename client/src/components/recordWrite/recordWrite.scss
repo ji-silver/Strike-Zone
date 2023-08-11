@@ -205,9 +205,12 @@ $color-light: #fadde6;
             }
 
             .comment {
+                padding: 0 10px;
                 textarea {
+                    box-sizing: border-box;
+                    padding: 0;
                     white-space: pre-wrap;
-                    width: 99%;
+                    width: 100%;
                     resize: none;
                     outline: none;
                     border: 1px solid #e5e5e5;

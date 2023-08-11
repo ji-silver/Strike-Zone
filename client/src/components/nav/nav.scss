@@ -2,24 +2,18 @@ $color-main: #e02b66;
 $color-light: #fadde6;
 
 .header {
-    position: fixed;
+    position: relative;
+    height: 100%;
     background: white;
     border: 1px solid #e8e8e8;
-    top: 1.5rem;
-    width: 100%;
-    max-width: 80vw;
     margin: 0 auto;
-    border-radius: 50px;
-    height: 70px;
-    padding: 0 25px;
-    z-index: 20;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 5px 25px -5px rgb(241, 241, 241);
 
     @media (max-width: 960px) {
-        height: 60px;
+        padding: 0 25px;
     }
 
     .logo {
