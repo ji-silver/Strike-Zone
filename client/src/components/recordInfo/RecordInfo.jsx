@@ -5,7 +5,6 @@ import { BiSolidQuoteAltLeft } from "react-icons/bi";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteRecord } from "../../redux/recordSlice";
-import { IoClose } from "react-icons/io5";
 
 const RecordWrite = ({ info, onCloseModal }) => {
   const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
