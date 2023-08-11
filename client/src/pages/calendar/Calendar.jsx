@@ -120,8 +120,11 @@ const Calendar = () => {
 
   return (
     <>
-      <Nav />
-      <Calcontainer className="top">
+      <Nav modalOpen={selectedDate || selectedEvent} />
+      <Calcontainer
+        className="top calendar"
+        modalOpen={selectedDate || selectedEvent}
+      >
         <div className="section">
           <FullCalendar
             defaultView="dayGridMonth"
@@ -159,6 +162,8 @@ const Calendar = () => {
 export default Calendar;
 
 const Calcontainer = styled.div`
+  position: ${(props) => (props.modalOpen ? "fixed" : "relative")};
+
   @media (max-width: 768px) {
     padding: 0;
   }

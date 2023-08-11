@@ -6,6 +6,7 @@ $color-light: #fadde6;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    overflow-x: hidden;
 
     .infoBox {
         @media (max-width: 960px) {
@@ -16,6 +17,7 @@ $color-light: #fadde6;
 
         @media (max-width: 768px) {
             gap: 0;
+            padding: 0 10px;
         }
     }
 

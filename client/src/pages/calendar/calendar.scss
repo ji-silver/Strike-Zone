@@ -3,6 +3,7 @@ $color-light: #fadde6;
 .section {
     width: 90%;
     margin: 0 auto;
+    position: relative;
 
     @media (max-width: 960px) {
         width: 100%;
@@ -35,6 +36,10 @@ $color-light: #fadde6;
 
         .fc-daygrid-body-natural .fc-daygrid-day-events {
             margin: 0;
+        }
+
+        .fc-col-header-cell-cushion {
+            padding: 2px 8px;
         }
     }
 
@@ -75,26 +80,59 @@ $color-light: #fadde6;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 23px;
+        padding: 2px;
+
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+        }
 
         .day {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 22px;
-            height: 22px;
             background: #fddad2;
             border-radius: 100px;
-            padding: 2px;
-            font-weight: 500;
         }
     }
     .fc-daygrid-event-harness {
         height: 100%;
     }
 
-    .fc-daygrid-day-top {
-        font-weight: bold;
+    .fc-theme-standard td,
+    .fc-theme-standard th {
+        @media (max-width: 768px) {
+            border: none;
+        }
     }
+
+    .fc-theme-standard .fc-scrollgrid {
+        @media (max-width: 768px) {
+            border: none;
+        }
+    }
+
+    .fc-daygrid-day {
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+    }
+
+    .fc-day {
+        @media (max-width: 768px) {
+            text-align: right;
+            font-size: 14px;
+        }
+    }
+
+    .fc-daygrid-day-top {
+        font-weight: 600;
+        @media (max-width: 768px) {
+            font-weight: normal;
+        }
+    }
+
     .fc-event {
         cursor: pointer;
     }

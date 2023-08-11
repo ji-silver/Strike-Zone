@@ -17,6 +17,10 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
+input {
+  font-size: 14px;
+}
+
 /* reset.css */
 html,
 body,
@@ -146,6 +150,10 @@ a {
   color: #424242;
   text-decoration: none;
   outline: none;
+}
+
+select {
+  color: #424242;
 }
 
 button {

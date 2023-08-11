@@ -10,7 +10,7 @@ import { logout } from "../../redux/userSlice";
 import axios from "axios";
 import { styled } from "styled-components";
 
-const Nav = () => {
+const Nav = ({ modalOpen }) => {
   const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   const [toggle, setToggle] = useState(false);
 
@@ -34,7 +34,7 @@ const Nav = () => {
   };
 
   return (
-    <NavContainer>
+    <NavContainer modalOpen={modalOpen}>
       <header className="header container">
         <a href="/">
           <img src="/images/logo.png" alt="" className="logo" />
@@ -108,4 +108,6 @@ const NavContainer = styled.div`
   position: relative;
   width: 100%;
   height: 70px;
+
+  z-index: ${(props) => (props.modalOpen ? "0" : "20")};
 `;

@@ -6,7 +6,7 @@ $color-light: #fadde6;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 850px;
-    height: 650px;
+    height: 700px;
     z-index: 100;
     background-color: white;
     border: 1px solid #e8e8e8;
@@ -18,6 +18,7 @@ $color-light: #fadde6;
 
     .modal_h {
         position: relative;
+        height: auto;
         height: 100%;
 
         @media (max-width: 768px) {
@@ -26,18 +27,28 @@ $color-light: #fadde6;
         }
     }
     .closeBtn {
+        border: 1px solid #e8e8e8;
+        box-shadow: 0 5px 25px -5px #f1f1f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
         right: 12px;
         top: 12px;
         cursor: pointer;
         font-size: 2.25rem;
         line-height: 2.5rem;
-        position: absolute;
+        position: fixed;
+        z-index: 1000;
     }
 
     .title {
         font-size: 1.5rem;
         font-weight: bold;
         text-align: center;
-        padding-top: 17px;
+        padding-top: 30px;
     }
 }
