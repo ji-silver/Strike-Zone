@@ -1,10 +1,9 @@
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/proxy/*"
+  to = "http://43.202.115.19/:splat"
   status = 200
 
 [[redirects]]
-from = "/proxy/*"
-  to = "http://43.202.115.19/:splat"  
+  from = "/*"
+  to = "/index.html"
   status = 200
-  force = true
