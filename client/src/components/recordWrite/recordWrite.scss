@@ -167,6 +167,8 @@ $color-light: #fadde6;
                 @media (max-width: 768px) {
                     flex-direction: row;
                     justify-content: space-evenly;
+
+                    padding: 10px;
                 }
 
                 .col {
