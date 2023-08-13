@@ -47,7 +47,7 @@ const DiaryContent = () => {
   };
 
   if (!data || !data.imgUrl || !Array.isArray(data.imgUrl) || loading) {
-    return <Loading />;
+    return null;
   }
 
   return (

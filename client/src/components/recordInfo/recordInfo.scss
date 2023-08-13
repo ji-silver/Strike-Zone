@@ -3,7 +3,6 @@ $color-light: #fadde6;
 .recordI {
     display: flex;
     flex-direction: column;
-    overflow-x: auto;
     height: 100%;
     .info {
         padding-top: 10px;
@@ -33,17 +32,22 @@ $color-light: #fadde6;
             padding-top: 30px;
         }
 
-        .scoreTable {
-            width: 100%;
-            text-align: center;
-            font-size: 18px;
+        div {
+            overflow-x: auto;
 
-            @media (max-width: 768px) {
-                font-size: 16px;
-            }
+            .scoreTable {
+                width: 100%;
+                text-align: center;
+                font-size: 18px;
+                white-space: nowrap;
 
-            td {
-                padding: 8px;
+                @media (max-width: 768px) {
+                    font-size: 16px;
+                }
+
+                td {
+                    padding: 8px;
+                }
             }
         }
     }
@@ -166,6 +170,10 @@ $color-light: #fadde6;
 
             .comment {
                 font-weight: bold;
+            }
+
+            .desc {
+                white-space: pre-wrap;
             }
         }
     }

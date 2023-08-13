@@ -45,7 +45,7 @@ const Diary = () => {
               {/* reverse()를 사용하여 배열을 역순으로 만들기 */}
               {data
                 .slice()
-                .reverse()
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
                 .map((item) => {
                   const dateObj = new Date(item.date);
                   const dayOfWeek = getDayOfWeek(dateObj);

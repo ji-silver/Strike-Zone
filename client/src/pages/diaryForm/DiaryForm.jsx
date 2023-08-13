@@ -33,18 +33,6 @@ const DiaryForm = () => {
 
   console.log(data);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setFormData({
-  //       result: data.result,
-  //       myTeam: data.myTeam,
-  //       opposingTeam: data.opposingTeam,
-  //       desc: data.desc,
-  //       imgUrl: data.imgUrl,
-  //     });
-  //   }
-  // }, [data]);
-
   const navigate = useNavigate();
 
   // 클라우드에 이미지 저장 후 url 받아오기
@@ -63,7 +51,8 @@ const DiaryForm = () => {
         );
         uploadedUrls.push(uploadRes.data.url);
       } catch (err) {
-        console.error(err);
+        alert("최대 이미지 파일 크기는 10MB입니다.");
+        return;
       }
     }
 

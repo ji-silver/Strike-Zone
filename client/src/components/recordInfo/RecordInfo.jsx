@@ -105,22 +105,24 @@ const RecordWrite = ({ info, onCloseModal }) => {
         </div>
       </div>
       <div className="score">
-        <table className="scoreTable">
-          {renderTableHeader()}
-          <tbody>
-            {location === "Away" ? (
-              <>
-                {renderTeamRow(aTeamName, paddedAScore, aSum)}
-                {renderTeamRow(hTeamName, paddedHScore, hSum)}
-              </>
-            ) : (
-              <>
-                {renderTeamRow(hTeamName, paddedHScore, hSum)}
-                {renderTeamRow(aTeamName, paddedAScore, aSum)}
-              </>
-            )}
-          </tbody>
-        </table>
+        <div>
+          <table className="scoreTable">
+            {renderTableHeader()}
+            <tbody>
+              {location === "Away" ? (
+                <>
+                  {renderTeamRow(aTeamName, paddedAScore, aSum)}
+                  {renderTeamRow(hTeamName, paddedHScore, hSum)}
+                </>
+              ) : (
+                <>
+                  {renderTeamRow(hTeamName, paddedHScore, hSum)}
+                  {renderTeamRow(aTeamName, paddedAScore, aSum)}
+                </>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="boxScore">
         <div className="lineUp">
@@ -167,7 +169,7 @@ const RecordWrite = ({ info, onCloseModal }) => {
               </Icon>
               COMMENT
             </p>
-            <p>{comment}</p>
+            <p className="desc">{comment}</p>
           </div>
         </div>
       </div>
