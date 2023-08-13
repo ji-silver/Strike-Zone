@@ -26,51 +26,6 @@ const RecordWrite = ({ info, onCloseModal, editInfo }) => {
   const [homeScore, setHomeScore] = useState(Array(12).fill(""));
   const dispatch = useDispatch();
 
-  // const fillWithEmpty = (array, length) => {
-  //   return Array.from({ length }, (_, index) =>
-  //     array[index] !== undefined ? array[index] : ""
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   if (editInfo) {
-  //     setAwayScore(
-  //       fillWithEmpty(
-  //         editInfo.extendedProps?.aScore?.map((value) =>
-  //           !isNaN(value) ? Number(value) : ""
-  //         ),
-  //         12
-  //       )
-  //     );
-  //     setHomeScore(
-  //       fillWithEmpty(
-  //         editInfo.extendedProps?.hScore?.map((value) =>
-  //           !isNaN(value) ? Number(value) : ""
-  //         ),
-  //         12
-  //       )
-  //     );
-  //     setRecordData((prevRecordData) => ({
-  //       ...prevRecordData,
-  //       aSum: editInfo.extendedProps?.aSum || "",
-  //       hSum: editInfo.extendedProps?.hSum || "",
-  //       hTeam: editInfo.extendedProps?.hTeam || "",
-  //       aTeam: editInfo.extendedProps?.aTeam || "",
-  //       location: editInfo.extendedProps?.location || "Home",
-  //       place: editInfo.extendedProps?.place || "",
-  //       win: editInfo.extendedProps?.win || "",
-  //       hold: editInfo.extendedProps?.hold || [],
-  //       saveP: editInfo.extendedProps?.saveP || "",
-  //       mvp: editInfo.extendedProps?.mvp || "",
-  //       comment: editInfo.extendedProps?.comment || "",
-  //     }));
-  //   }
-  // }, [editInfo]);
-
-  // useEffect(() => {
-  //   console.log(recordData, awayScore);
-  // }, [recordData, awayScore]);
-
   // 배열에 빈칸 없애기
   const aScore = awayScore.filter((value) => value !== null && value !== "");
   const hScore = homeScore.filter((value) => value !== null && value !== "");

@@ -143,7 +143,7 @@ const RecordWrite = ({ info, onCloseModal }) => {
                 {win}
               </>
             )}
-            {hold && (
+            {hold.length > 0 && (
               <>
                 <span className="highlight">홀드</span>
                 {hold}
