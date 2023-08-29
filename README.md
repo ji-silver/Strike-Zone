@@ -30,6 +30,7 @@
 ## 시작 가이드
 ### Front-End
 ```javascript
+git clone https://github.com/ji-silver/Strike-Zone.git
 cd client
 npm install
 npm start
@@ -46,6 +47,7 @@ SECRET_KEY = test
 ```
 
 ```javascript
+git clone https://github.com/ji-silver/Strike-Zone.git
 cd api
 npm install
 npm start
