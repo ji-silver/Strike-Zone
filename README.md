@@ -51,3 +51,37 @@ npm install
 npm start
 ```
 
+## 📌 주요 기능
+### 1. 메인 페이지
+
+|캘린더|기록 모달|
+|------|------|
+|<img src="https://github.com/ji-silver/Player/assets/59919953/e5e7ae58-1a4b-4b96-b375-ad5e1bd032ec" width="400" height="auto"/>|<img src="https://github.com/ji-silver/Player/assets/59919953/83dbd54a-237d-4acd-b40b-b7e4567d086a" width="400" height="auto"/>|
+
+- FullCalendar 라이브러리를 커스텀 하여 기록했던 야구 일정을 한눈에 볼 수 있으며, 각 날짜에는 팀 로고, 점수, 승부, 장소를 표시합니다.
+- 사용자는 캘린더에서 기록이 있는 날짜를 클릭하면 작성했던 기록을 보여주고, 기록이 없는 날짜를 클릭하면 기록을 작성할 수 있는 모달창을 띄웁니다.
+- 경기 기록 작성은 사용자만 가능하며 비로그인 시 로그인을 유도하고, 기록 작성 시 회원가입 때 선택했던 선호팀을 ‘우리 팀’으로 기본 설정합니다.
+- 기록을 작성하거나 작성 후 axios를 사용하여 백엔드 API 통신하고 데이터를 처리합니다.
+- Redux-Toolkit을 사용해서 기록 정보 전역 상태 관리하고 기록을 추가하거나 삭제할 때마다 상태를 업데이트하여 캘린더에 반영합니다.
+
+
+### 2. 직관 다이어리
+
+|리스트|글 작성 확인|
+|------|------|
+|<img src="https://github.com/ji-silver/Player/assets/59919953/575772fb-746b-4e35-8514-f346db5dcc8a" width="400" height="auto"/>|<img src="https://github.com/ji-silver/Player/assets/59919953/eba22ccf-7729-4737-9947-ab08c488856b" width="400" height="auto"/>|
+
+- Redux-Toolkit을 사용해서 다이어리 기록을 전역 상태 관리하였고 이를 통해 캘린더에도 직관 간 날을 표시하도록 하였습니다.
+- axios를 사용하여 백엔드 API를 호출하고, custom hook를 이용하여 데이터와 로딩 상태를 효과적으로 관리하였습니다.
+- 글 작성 시 cloudinary 클라우드 API를 이용해서 이미지 저장하고 URL을 받아와서 DB에 저장하는 기능을 구현하였습니다.
+- 이미지를 cloudinary API에 저장할 때 업로드 속도가 느렸던 문제를 조건부 렌더링으로 로딩 화면을 삽입하여 사용자가 등록이 진행 중임을 알 수 있도록 구현하였습니다.
+- 작성한 다이어리를 ‘직관일’을 기준으로 최신 순서대로 확인할 수 있도록 다이어리 리스트 정렬하는 코드를 작성했습니다.
+
+### 3. 직관 승률
+
+|직관 승률|모바일|
+|------|------|
+|<img src="https://github.com/ji-silver/Player/assets/59919953/6722e789-e1d7-4f87-8ed0-cf2f003a2034" width="600" height="auto"/>|<img src="https://github.com/ji-silver/Player/assets/59919953/8a2ca736-9a6a-4825-9bc9-e0e2adab23bc" width="auto" height="300"/>|
+
+- axios를 사용하여 백엔드 API를 호출하고, custom hook를 이용하여 데이터와 로딩 상태를 효과적으로 관리하였습니다.
+- 직관 기록 작성 후 올해 직관 날짜를 기준으로 올해의 데이터만 필터링하여 정렬하고 이를 통해 올해 방문 횟수와 승률을 계산하였습니다.
