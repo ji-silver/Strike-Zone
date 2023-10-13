@@ -40,6 +40,12 @@
 
 <br />
 
+## API / 스키마
+<a href="https://www.notion.so/830dc7a1eabe4632a9f76e3796e9dcf5?v=3575e23e23844143b39e4da754852ff7&pvs=4" target="_blank">**📗 API**</a> <br />
+<a href="https://www.notion.so/a21ed8e8164449f4be611106b5f65f81?pvs=4" target="_blank">**📕 스키마**</a>
+
+<br />
+
 ## 시작 가이드
 ### Front-End
 ```javascript
