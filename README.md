@@ -1,7 +1,14 @@
-# Strike-Zone
 
-### <a href="http://strikezone.jisilver.shop/">🖥️ Website</a>
+
+<div align="center">
+  
+# Strike-Zone
+ 
 <img src="https://github.com/ji-silver/Strike-Zone/assets/59919953/7182d4f4-4933-42ef-821c-249369c0994e">
+ 
+### <a href="http://strikezone.jisilver.shop/">🖥️ Website</a>
+</div>
+
 
 ## 🗒️ 프로젝트 기획
 **야구를 관람하는 것뿐만 아니라, 그날의 야구 기록을 작성하고 야구장에서의 경험을 기록할 수 있는 웹 서비스** <br />
@@ -12,8 +19,12 @@
 - 직관 기록: 야구장 직관을 다녀왔다면 직관 다이어리 작성하기
 - 직관 승률: 직관 기록 작성할 때 이긴날 체크 시 직관 승률 계산하기
 
+<br />
+
 ## 📅 개발 기간
 2023년 7월 29일 ~ 8월 13일 (16일)
+
+<br />
 
 ## 🛠 Skils
 ****Front-End**** <br />
@@ -26,6 +37,8 @@
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"/>
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white"/>
 <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/>
+
+<br />
 
 ## 시작 가이드
 ### Front-End
@@ -53,6 +66,8 @@ npm install
 npm start
 ```
 
+<br />
+
 ## 📌 주요 기능
 ### 1. 메인 페이지
 
@@ -66,6 +81,7 @@ npm start
 - 기록을 작성하거나 작성 후 axios를 사용하여 백엔드 API 통신하고 데이터를 처리합니다.
 - Redux-Toolkit을 사용해서 기록 정보 전역 상태 관리하고 기록을 추가하거나 삭제할 때마다 상태를 업데이트하여 캘린더에 반영합니다.
 
+<br />
 
 ### 2. 직관 다이어리
 
@@ -78,6 +94,8 @@ npm start
 - 글 작성 시 cloudinary 클라우드 API를 이용해서 이미지 저장하고 URL을 받아와서 DB에 저장하는 기능을 구현하였습니다.
 - 이미지를 cloudinary API에 저장할 때 업로드 속도가 느렸던 문제를 조건부 렌더링으로 로딩 화면을 삽입하여 사용자가 등록이 진행 중임을 알 수 있도록 구현하였습니다.
 - 작성한 다이어리를 ‘직관일’을 기준으로 최신 순서대로 확인할 수 있도록 다이어리 리스트 정렬하는 코드를 작성했습니다.
+
+<br />
 
 ### 3. 직관 승률
 
