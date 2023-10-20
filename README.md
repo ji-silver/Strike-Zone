@@ -6,7 +6,6 @@
  
 <img src="https://github.com/ji-silver/Strike-Zone/assets/59919953/7182d4f4-4933-42ef-821c-249369c0994e">
  
-### <a href="http://strikezone.jisilver.shop/">🖥️ Website</a>
 </div>
 
 
